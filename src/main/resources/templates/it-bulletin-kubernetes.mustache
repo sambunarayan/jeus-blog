@@ -1,0 +1,29 @@
+{{>layout/header}}
+<main class="container">
+    <div class="p-4 p-md-5 mb-4 border text-black rounded bg-white">
+        <div class="col-md-6 px-0">
+            <h1 class="display-4 font-italic">Kubernetes 日記</h1>
+            <table class="table table-horizontal table-bordered">
+                <thead class="thead-strong">
+                <tr>
+                    <th>No</th>
+                    <th>Title</th>
+                    <th>Author</th>
+                    <th>Updated</th>
+                </tr>
+                </thead>
+                <tbody id="tbody">
+                {{#posts}}
+                    <tr>
+                        <td>{{id}}</td>
+                        <td><a href="/posts/update/{{id}}">{{title}}</a></td>
+                        <td>{{author}}</td>
+                        <td>{{modifiedDate}}</td>
+                    </tr>
+                {{/posts}}
+                </tbody>
+            </table>
+        </div>
+    </div>
+</main><!-- /.container -->
+{{>layout/footer}}

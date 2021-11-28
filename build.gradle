@@ -25,8 +25,11 @@ repositories {
 dependencies {
     implementation 'org.springframework.boot:spring-boot-starter-web:2.5.6'
     implementation 'org.springframework.boot:spring-boot-starter-mustache:2.5.6'
+    implementation 'org.springframework.boot:spring-boot-starter-data-jdbc:2.5.6'
+    implementation 'org.springframework.boot:spring-boot-starter-data-jpa:2.5.6'
     implementation 'org.junit.jupiter:junit-jupiter:5.8.1'
     implementation 'org.projectlombok:lombok:1.18.22'
+    implementation 'org.mariadb.jdbc:mariadb-java-client:2.7.4'
     annotationProcessor 'org.projectlombok:lombok:1.18.14'
     testImplementation 'org.springframework.boot:spring-boot-starter-test:2.5.6'
     testImplementation 'org.springframework.security:spring-security-test:5.5.3'
