@@ -2,7 +2,13 @@
 <main class="container">
     <div class="p-4 p-md-5 mb-4 border text-black rounded bg-white">
         <div class="d-flex flex-column justify-content-center">
-            <h1 class="display-4 font-italic">Kubernetes 日記</h1>
+            <h1 class="display-4 font-italic">Kubernetes Diary</h1>
+            <article class="blog-post d-lg-none" id="blog-post">
+                <hr>
+                <h1>Title</h1>
+                <p>conent</p>
+            </article>
+            <hr>
             <table class="table">
                 <thead class="thead-strong">
                 <tr class="table-primary">
@@ -16,14 +22,19 @@
                 {{#posts}}
                     <tr>
                         <td>{{id}}</td>
-                        <td><a href="/posts/update/{{id}}">{{title}}</a></td>
+                        <td><a id="{{id}}" href="#">{{title}}</a></td>
                         <td>{{author}}</td>
                         <td>{{modifiedDate}}</td>
                     </tr>
                 {{/posts}}
                 </tbody>
             </table>
+            <div class="p-4">
+                <button type="button" class="btn btn-primary" id="btn-write">Write</button>
+            </div>
+
         </div>
     </div>
 </main><!-- /.container -->
+
 {{>layout/footer}}
