@@ -1,14 +1,23 @@
 var main = {
     init : function() {
-        alert('show');
         var _this = this;
-        $('#btn-write').on('click', function() {
-            alert('show');
+        $('a').on('click', function() {
             _this.showPost();
         });
     },
     showPost : function() {
-        alert('show');
+        var id = $('input:hidden[name="id"]').val();
+        $.ajax({
+            type: 'GET',
+            url: '/it/board/k8s/'+id,
+            dataType: 'json',
+            contentType: 'application/json; charset=utf-8',
+        }).done(function(json) {
+            $("#post-title").text(json.title);
+            $("#post-content").text(json.content);
+        }).fail(function (error) {
+            alert(JSON.stringify(error));
+        });
         $('#blog-post').removeClass('d-lg-none');
     }
 }

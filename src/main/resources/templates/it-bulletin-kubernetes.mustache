@@ -5,8 +5,8 @@
             <h1 class="display-4 font-italic">Kubernetes Diary</h1>
             <article class="blog-post d-lg-none" id="blog-post">
                 <hr>
-                <h1>Title</h1>
-                <p>conent</p>
+                <h2 class="blog-post-title" id="post-title"></h2>
+                <p id="post-content"></p>
             </article>
             <hr>
             <table class="table">
@@ -22,7 +22,7 @@
                 {{#posts}}
                     <tr>
                         <td>{{id}}</td>
-                        <td><a id="{{id}}" href="#">{{title}}</a></td>
+                        <td id="title"><a id="{{id}}" href="#"><input type="hidden" name="id" value="{{id}}"> {{title}}</a></td>
                         <td>{{author}}</td>
                         <td>{{modifiedDate}}</td>
                     </tr>
@@ -36,5 +36,5 @@
         </div>
     </div>
 </main><!-- /.container -->
-
+<script src="/js/app/board.js"></script>
 {{>layout/footer}}
