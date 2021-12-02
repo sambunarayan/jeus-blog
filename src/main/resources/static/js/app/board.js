@@ -4,6 +4,11 @@ var main = {
         $('a').on('click', function() {
             _this.showPost();
         });
+        $('table tr').hover(function() {
+            $(this).addClass('table-light');
+        }, function() {
+            $(this).removeClass('table-light');
+        });
     },
     showPost : function() {
         var id = $('input:hidden[name="id"]').val();
