@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Service
 public class ITBulletinBoardService {
@@ -15,6 +16,12 @@ public class ITBulletinBoardService {
 
     public List<Post> findAll() {
         return repository.findAll();
+    }
+
+    public List<PostResponseDto> findAllDesc() {
+        return repository.findAllDesc().stream()
+                .map(p -> new PostResponseDto(p))
+                .collect(Collectors.toList());
     }
 
     public PostResponseDto findById(Long id) {

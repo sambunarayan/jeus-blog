@@ -18,7 +18,7 @@ public class ITBulletinK8sBoardController {
 
     @GetMapping("/it/board/k8s")
     public String board(Model model) {
-        model.addAttribute("posts", service.findAll());
+        model.addAttribute("posts", service.findAllDesc());
         return "it-bulletin-kubernetes";
     }
 }

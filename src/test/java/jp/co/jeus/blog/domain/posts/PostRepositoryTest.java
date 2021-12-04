@@ -5,7 +5,10 @@ import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.format.annotation.DateTimeFormat;
 
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.Optional;
 
 import static org.assertj.core.api.Assertions.assertThat;
@@ -19,9 +22,11 @@ public class PostRepositoryTest {
 
     @Test
     public void save() {
+        DateTimeFormatter fmt = DateTimeFormatter.ofPattern("yyyyMMddHHmmssSSS");
+        String dateTime = fmt.format(LocalDateTime.now());
         Post post = Post.builder()
-                .title("Test title")
-                .content("Test content")
+                .title("Test title " + dateTime)
+                .content("Test content " + dateTime)
                 .author("Test Author")
                 .build();
         post = repository.save(post);
@@ -37,6 +42,6 @@ public class PostRepositoryTest {
         assertThat(res.getContent()).isEqualTo(post.getContent());
         assertThat(res.getAuthor()).isEqualTo(post.getAuthor());
 
-        repository.delete(post);
+//        repository.delete(post);
     }
 }

@@ -2,16 +2,17 @@ var main = {
     init : function() {
         var _this = this;
         $('a').on('click', function() {
-            _this.showPost();
+            _this.showPost($(this).attr('id'));
         });
         $('table tr').hover(function() {
-            $(this).addClass('table-light');
+            if (!$(this).hasClass('table-primary')) {
+                $(this).addClass('table-light');
+            }
         }, function() {
             $(this).removeClass('table-light');
         });
     },
-    showPost : function() {
-        var id = $('input:hidden[name="id"]').val();
+    showPost : function(id) {
         $.ajax({
             type: 'GET',
             url: '/it/board/k8s/'+id,
@@ -24,6 +25,7 @@ var main = {
             alert(JSON.stringify(error));
         });
         $('#blog-post').removeClass('d-lg-none');
+        window.scrollTo({ top: 0, behavior: 'smooth' });
     }
 }
 main.init();
