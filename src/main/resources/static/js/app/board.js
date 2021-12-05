@@ -2,6 +2,16 @@ var main = {
     init : function() {
         var _this = this;
         $('a').on('click', function() {
+            if ($(this).hasClass('nav-link')) {
+                return;
+            } else if ($(this).hasClass('btn')) {
+                return true;
+            }
+            var tr = $("table tr");
+            for (var i=0; i < tr.length; i++) {
+                tr.removeClass('table-secondary');
+            }
+            $(this).closest('tr').addClass('table-secondary');
             _this.showPost($(this).attr('id'));
         });
         $('table tr').hover(function() {
