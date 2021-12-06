@@ -4,11 +4,9 @@ import jp.co.jeus.blog.domain.BaseTImeEntity;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+import lombok.NonNull;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 
 @Getter
 @NoArgsConstructor
@@ -18,12 +16,16 @@ public class Post extends BaseTImeEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+    @Column(name="board_name")
+    @NonNull
+    private String boardName;
     private String title;
     private String content;
     private String author;
 
     @Builder
-    public Post(String title, String content, String author) {
+    public Post(String boardName, String title, String content, String author) {
+        this.boardName = boardName;
         this.title = title;
         this.content = content;
         this.author = author;

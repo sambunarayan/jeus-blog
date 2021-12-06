@@ -2,7 +2,7 @@
 <main class="container">
     <div class="p-4 p-md-5 mb-4 border text-black rounded bg-white">
         <div class="d-flex flex-column justify-content-center">
-            <h1 class="display-4 font-italic">Kubernetes Diary</h1>
+            <h1 class="display-4 font-italic">{{board_name}} Diary</h1>
             <article class="blog-post d-lg-none" id="blog-post">
                 <hr>
                 <h2 class="blog-post-title" id="post-title"></h2>
@@ -30,7 +30,7 @@
                 </tbody>
             </table>
             <div class="p-4">
-                <a href="/it/board/posting/kubernetes" class="btn btn-primary active" role="button">投稿する</a>
+                <a href="/it/board/posting/{{board_name}}" class="btn btn-primary active" role="button">投稿する</a>
             </div>
         </div>
     </div>

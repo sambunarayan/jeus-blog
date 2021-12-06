@@ -25,6 +25,7 @@ public class PostRepositoryTest {
         DateTimeFormatter fmt = DateTimeFormatter.ofPattern("yyyyMMddHHmmssSSS");
         String dateTime = fmt.format(LocalDateTime.now());
         Post post = Post.builder()
+                .boardName("Kubernetes")
                 .title("Test title " + dateTime)
                 .content("Test content " + dateTime)
                 .author("Test Author")
@@ -37,6 +38,7 @@ public class PostRepositoryTest {
 
         // then
         Post res = resOp.get();
+        assertThat(res.getBoardName()).isEqualTo(post.getBoardName());
         assertThat(res.getId()).isEqualTo(post.getId());
         assertThat(res.getTitle()).isEqualTo(post.getTitle());
         assertThat(res.getContent()).isEqualTo(post.getContent());
