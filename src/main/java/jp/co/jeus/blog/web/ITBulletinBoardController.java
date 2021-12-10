@@ -2,6 +2,7 @@ package jp.co.jeus.blog.web;
 
 import jp.co.jeus.blog.domain.posts.Post;
 import jp.co.jeus.blog.service.ITBulletinBoardService;
+import jp.co.jeus.blog.web.dto.PostResponseDto;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
@@ -25,9 +26,13 @@ public class ITBulletinBoardController {
     }
 
     @GetMapping("/list/{boardName}")
-    public String board(@PathVariable String boardName, Model model) {
+    public String board(@PathVariable String boardName, @RequestParam("bno") Long bno, Model model) {
         model.addAttribute("board_name", boardName);
         model.addAttribute("posts", service.findByBoardNameDesc(boardName));
+        if (bno != null) {
+            PostResponseDto resDto = service.findById(bno);
+            model.addAttribute("current_post", resDto);
+        }
         return "it-bulletin-board";
     }
 
@@ -42,7 +47,7 @@ public class ITBulletinBoardController {
         service.savePost(Post.builder()
                 .boardName(formData.get("board_name"))
                 .title(formData.get("titleInput"))
-                .content(formData.get("contentArea"))
+                .content(formData.get("contentArea").replaceAll("\r\n", "&lt;br&gt;"))
                 .author("Guest")
                 .build());
         return "redirect:/it/board/list/" + formData.get("board_name");

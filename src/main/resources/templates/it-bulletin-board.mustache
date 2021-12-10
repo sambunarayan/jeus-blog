@@ -2,12 +2,17 @@
 <main class="container">
     <div class="p-4 p-md-5 mb-4 border text-black rounded bg-white">
         <div class="d-flex flex-column justify-content-center">
-            <h1 class="display-4 font-italic">{{board_name}} Diary</h1>
-            <article class="blog-post d-lg-none" id="blog-post">
-                <hr>
-                <h2 class="blog-post-title" id="post-title"></h2>
-                <textarea class="border-0" id="post-content" rows="10" readonly ></textarea>
-            </article>
+            {{#current_post}}
+                <h1 class="display-4 font-italic">{{board_name}} Diary</h1>
+                <article class="blog-post" id="blog-post">
+                    <hr>
+                    <h2 class="blog-post-title" id="post-title">{{title}}</h2>
+                    <label id="post-content"></label>
+                    <p>
+                        {{content}}
+                    </p>
+                </article>
+            {{/current_post}}
             <hr>
             <table class="table">
                 <thead class="thead-strong">
