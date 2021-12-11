@@ -8,9 +8,9 @@
                     <hr>
                     <h2 class="blog-post-title" id="post-title">{{title}}</h2>
                     <label id="post-content"></label>
-                    <p>
-                        {{content}}
-                    </p>
+                    {{#content}}
+                        {{.}}<br>
+                    {{/content}}
                 </article>
             {{/current_post}}
             <hr>
@@ -27,7 +27,7 @@
                 {{#posts}}
                     <tr id='tr id'>
                         <td>{{id}}</td>
-                        <td><a id="{{id}}" href="#">{{title}}</a></td>
+                        <td><a id="{{id}}" href="/it/board/list/{{board_name}}?bno={{id}}">{{title}}</a></td>
                         <td>{{author}}</td>
                         <td>{{modifiedDate}}</td>
                     </tr>
@@ -40,5 +40,5 @@
         </div>
     </div>
 </main><!-- /.container -->
-<script src="/js/app/board.js"></script>
+<!-- <script src="/js/app/board.js"></script> -->
 {{>layout/footer}}

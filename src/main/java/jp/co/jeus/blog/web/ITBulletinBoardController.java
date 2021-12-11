@@ -2,6 +2,7 @@ package jp.co.jeus.blog.web;
 
 import jp.co.jeus.blog.domain.posts.Post;
 import jp.co.jeus.blog.service.ITBulletinBoardService;
+import jp.co.jeus.blog.web.dto.CurrentPostResponseDto;
 import jp.co.jeus.blog.web.dto.PostResponseDto;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,6 +12,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.HashMap;
+import java.util.List;
 
 @RequiredArgsConstructor
 @RequestMapping("/it/board")
@@ -22,6 +24,7 @@ public class ITBulletinBoardController {
 
     @GetMapping("bulletin")
     public String board() {
+
         return "it-bulletin";
     }
 
@@ -31,7 +34,7 @@ public class ITBulletinBoardController {
         model.addAttribute("posts", service.findByBoardNameDesc(boardName));
         if (bno != null) {
             PostResponseDto resDto = service.findById(bno);
-            model.addAttribute("current_post", resDto);
+            model.addAttribute("current_post", new CurrentPostResponseDto(resDto));
         }
         return "it-bulletin-board";
     }
@@ -44,12 +47,12 @@ public class ITBulletinBoardController {
 
     @RequestMapping(value = "posting", method = RequestMethod.POST, consumes = MediaType.APPLICATION_FORM_URLENCODED_VALUE)
     public String posting(@RequestParam HashMap<String, String> formData, Model model) {
-        service.savePost(Post.builder()
+        Post post = service.savePost(Post.builder()
                 .boardName(formData.get("board_name"))
                 .title(formData.get("titleInput"))
-                .content(formData.get("contentArea").replaceAll("\r\n", "&lt;br&gt;"))
+                .content(formData.get("contentArea"))
                 .author("Guest")
                 .build());
-        return "redirect:/it/board/list/" + formData.get("board_name");
+        return "redirect:/it/board/list/" + formData.get("board_name") + "?bno=" + post.getId();
     }
 }

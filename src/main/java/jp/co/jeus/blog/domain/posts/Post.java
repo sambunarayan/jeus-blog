@@ -1,6 +1,6 @@
 package jp.co.jeus.blog.domain.posts;
 
-import jp.co.jeus.blog.domain.BaseTImeEntity;
+import jp.co.jeus.blog.domain.BaseTimeEntity;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -11,7 +11,7 @@ import javax.persistence.*;
 @Getter
 @NoArgsConstructor
 @Entity
-public class Post extends BaseTImeEntity {
+public class Post extends BaseTimeEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

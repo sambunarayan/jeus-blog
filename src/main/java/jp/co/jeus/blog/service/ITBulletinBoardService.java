@@ -43,7 +43,7 @@ public class ITBulletinBoardService {
     }
 
     @Transactional
-    public void savePost(Post post) {
-        repository.save(post);
+    public Post savePost(Post post) {
+        return repository.save(post);
     }
 }
