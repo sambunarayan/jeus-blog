@@ -1,14 +1,12 @@
 package jp.co.jeus.blog.domain.posts;
 
 import jp.co.jeus.blog.domain.BaseTimeEntity;
-import lombok.Getter;
-import lombok.NonNull;
-import lombok.RequiredArgsConstructor;
+import lombok.*;
 
 import javax.persistence.*;
 
 @Getter
-@RequiredArgsConstructor
+@NoArgsConstructor
 @Entity
 public class Board extends BaseTimeEntity {
 
@@ -22,4 +20,10 @@ public class Board extends BaseTimeEntity {
     private String category;
     private String description;
 
+    @Builder
+    public Board(String boardName, String category, String description) {
+        this.boardName = boardName;
+        this.category = category;
+        this.description = description;
+    }
 }
