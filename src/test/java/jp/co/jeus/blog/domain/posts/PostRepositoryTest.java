@@ -9,6 +9,7 @@ import org.springframework.format.annotation.DateTimeFormat;
 
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
+import java.util.List;
 import java.util.Optional;
 
 import static org.assertj.core.api.Assertions.assertThat;
@@ -50,7 +51,8 @@ public class PostRepositoryTest {
 
     @Test
     public void findWithPaging() {
-        repository.findWithPaging("kubernetes", 5L).forEach(System.out::println);
+        List<Post> list = repository.findWithPaging("kubernetes", 1, 1);
+        assertThat(list.size()).isGreaterThan(0);
     }
 
     @Test

@@ -1,6 +1,7 @@
 package jp.co.jeus.blog.web;
 
 import jp.co.jeus.blog.service.ITBulletinPostService;
+import jp.co.jeus.blog.web.dto.PostPageDto;
 import jp.co.jeus.blog.web.dto.PostResponseDto;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,4 +20,9 @@ public class ITBulletinBoardRestController {
     public PostResponseDto getK8sPostingList(@PathVariable Long id) {
         return service.findById(id);
     }
+
+//    @GetMapping("/it/board/{boardName}/{page}")
+//    public PostPageDto getPostPage(@PathVariable("boardName") String boardName, @PathVariable("page") int page) {
+//
+//    }
 }
