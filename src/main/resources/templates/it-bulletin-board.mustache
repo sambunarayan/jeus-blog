@@ -2,15 +2,17 @@
 <main class="container">
     <div class="p-4 p-md-5 mb-4 border text-black rounded bg-white">
         <div class="d-flex flex-column justify-content-center">
+            <h1 class="display-4 font-italic">{{board_name}} Diary</h1>
             {{#current_post}}
-                <h1 class="display-4 font-italic">{{board_name}} Diary</h1>
                 <article class="blog-post" id="blog-post">
                     <hr>
                     <h2 class="blog-post-title" id="post-title">{{title}}</h2>
-                    <label id="post-content"></label>
-                    {{#content}}
-                        {{.}}<br>
-                    {{/content}}
+                    <p class="blog-post-meta">{{createdDate}} by {{author}}</p>
+                    <p>
+                        {{#content}}
+                            {{.}}<br>
+                        {{/content}}
+                    </p>
                 </article>
             {{/current_post}}
             <hr>
@@ -34,11 +36,15 @@
                 {{/posts}}
                 </tbody>
             </table>
+            <div>
+                <p class="text-center"><< 1 2 3 4 5 6 7 8 9 >><br>
+                </p>
+            </div>
             <div class="p-4">
                 <a href="/it/board/posting/{{board_name}}" class="btn btn-primary active" role="button">投稿する</a>
             </div>
         </div>
     </div>
 </main><!-- /.container -->
-<!-- <script src="/js/app/board.js"></script> -->
+<!-- <script src="/js/app/board_bk.js"></script> -->
 {{>layout/footer}}

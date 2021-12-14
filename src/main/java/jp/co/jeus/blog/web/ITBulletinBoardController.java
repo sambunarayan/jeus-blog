@@ -31,7 +31,7 @@ public class ITBulletinBoardController {
     }
 
     @GetMapping("/list/{boardName}")
-    public String board(@PathVariable String boardName, @RequestParam("bno") Long bno, Model model) {
+    public String board(@PathVariable String boardName, @RequestParam(name = "bno", required = false) Long bno, Model model) {
         model.addAttribute("board_name", boardName);
         model.addAttribute("posts", postService.findByBoardNameDesc(boardName));
         if (bno != null) {
