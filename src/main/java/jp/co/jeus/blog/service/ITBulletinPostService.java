@@ -2,6 +2,7 @@ package jp.co.jeus.blog.service;
 
 import jp.co.jeus.blog.domain.posts.PostRepository;
 import jp.co.jeus.blog.domain.posts.Post;
+import jp.co.jeus.blog.web.dto.PostPageDto;
 import jp.co.jeus.blog.web.dto.PostResponseDto;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,8 +19,13 @@ public class ITBulletinPostService {
     private PostRepository repository;
 
     @Transactional
-    public List<Post> findAll() {
-        return repository.findAll();
+    public PostPageDto findWithPaging(String boardName, int page) {
+        List<Post> list = repository.findByBoardNameDesc(boardName);
+        List<PostResponseDto> currPageList = list.subList((page - 1) * 10, page * 10)
+                .stream()
+                .map(p -> new PostResponseDto(p))
+                .collect(Collectors.toList());
+        return new PostPageDto(list.size(), currPageList);
     }
 
     @Transactional
