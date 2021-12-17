@@ -1,13 +1,19 @@
-$(document).ready(function(){ 
-  var template = $('#test').html();
-  var output = $('#output');
+$(document).ready(function(){
 
-  var data = {
-      "board_name": "Template Engines"
-  };
+        showList();
+        function showList() {
 
-  var result = Mustache.render(template, data);
-  
-  output.append(result);
+            var tableBody = $("#tbody");
+            alert(tableBody);
+            var body = "";
 
+            body += "<tr id='tr id'>";
+            body += "<td>1</td>";
+            body += "<td><a id='1' href='/it/board/list/kubernetes?bno=1'>test</a></td>";
+            body += "<td>a</td>";
+            body += "<td>b</td>";
+            body += "</tr>";
+            alert(body);
+            tableBody.html(body);
+        }
 });
