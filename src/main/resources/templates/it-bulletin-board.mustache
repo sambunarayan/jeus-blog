@@ -3,7 +3,10 @@
 <main class="container">
     <div class="p-4 p-md-5 mb-4 border text-black rounded bg-white">
         <div class="d-flex flex-column justify-content-center">
-            <h1 class="display-4 font-italic">{{board_name}} Diary</h1>
+            <h1 class="display-4 font-italic" id="board_name" val="kub">{{board_name}} Diary</h1>
+            <form id="hidden_form">
+            <input type="hidden" id="hidden_board_name" value="{{board_name}}" readonly="readonly">
+            </form>
             {{#current_post}}
                 <article class="blog-post" id="blog-post">
                     <hr>
@@ -26,16 +29,11 @@
                     <th style="width: 30%">Updated</th>
                 </tr>
                 </thead>
+
                 <tbody id="tbody">
-                {{#posts}}
-                    <tr id='tr id'>
-                        <td>{{id}}</td>
-                        <td><a id="{{id}}" href="/it/board/list/{{board_name}}?bno={{id}}">{{title}}</a></td>
-                        <td>{{author}}</td>
-                        <td>{{modifiedDate}}</td>
-                    </tr>
-                {{/posts}}
+
                 </tbody>
+
             </table>
             <div>
                 <p class="text-center"><< 1 2 3 4 5 6 7 8 9 >><br>
@@ -47,5 +45,10 @@
         </div>
     </div>
 </main><!-- /.container -->
+<script type="text/javascript">
+    var n = $(this).data("board_name");
+    alert(n);
+
+</script>
 <script src="/js/app/board.js"></script>
 {{>layout/footer}}
