@@ -7,8 +7,10 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+@RequestMapping("/it/board")
 @RequiredArgsConstructor
 @RestController
 public class ITBulletinBoardRestController {
@@ -16,13 +18,13 @@ public class ITBulletinBoardRestController {
     @Autowired
     private ITBulletinPostService service;
 
-    @GetMapping("/it/board/k8s/{id}")
-    public PostResponseDto getK8sPostingList(@PathVariable Long id) {
+    @GetMapping("/{boardName}/{id}")
+    public PostResponseDto getK8sPostingList(@PathVariable("boardName") String boardName, @PathVariable("id") Long id) {
         return service.findById(id);
     }
 
-//    @GetMapping("/it/board/{boardName}/{page}")
-//    public PostPageDto getPostPage(@PathVariable("boardName") String boardName, @PathVariable("page") int page) {
-//
-//    }
+    @GetMapping("/{boardName}/page/{page}")
+    public PostPageDto getPostPage(@PathVariable("boardName") String boardName, @PathVariable("page") int page) {
+        return service.findWithPaging(boardName, page);
+    }
 }

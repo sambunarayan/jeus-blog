@@ -29,15 +29,10 @@
                     <th style="width: 30%">Updated</th>
                 </tr>
                 </thead>
-
                 <tbody id="tbody">
-
                 </tbody>
-
             </table>
-            <div>
-                <p class="text-center"><< 1 2 3 4 5 6 7 8 9 >><br>
-                </p>
+            <div id="pageDiv">
             </div>
             <div class="p-4">
                 <a href="/it/board/posting/{{board_name}}" class="btn btn-primary active" role="button">投稿する</a>
@@ -45,10 +40,6 @@
         </div>
     </div>
 </main><!-- /.container -->
-<script type="text/javascript">
-    var n = $(this).data("board_name");
-    alert(n);
 
-</script>
 <script src="/js/app/board.js"></script>
 {{>layout/footer}}
