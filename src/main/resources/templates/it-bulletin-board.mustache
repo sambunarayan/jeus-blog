@@ -6,6 +6,7 @@
             <h1 class="display-4 font-italic" id="board_name" val="kub">{{board_name}} Diary</h1>
             <form id="hidden_form">
             <input type="hidden" id="hidden_board_name" value="{{board_name}}" readonly="readonly">
+                <input type="hidden" id="hidden_current_page" value="{{current_page}}" readonly="readonly">
             </form>
             {{#current_post}}
                 <article class="blog-post" id="blog-post">

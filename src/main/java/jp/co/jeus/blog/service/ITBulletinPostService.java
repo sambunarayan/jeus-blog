@@ -21,7 +21,9 @@ public class ITBulletinPostService {
     @Transactional
     public PostPageDto findWithPaging(String boardName, int page) {
         List<Post> list = repository.findByBoardNameDesc(boardName);
-        List<PostResponseDto> currPageList = list.subList((page - 1) * 10, page * 10)
+        int fromIdx = (page - 1) * 10;
+        int toIdx = (page * 10) < list.size() ? (page * 10) : list.size() - 1;
+        List<PostResponseDto> currPageList = list.subList(fromIdx, toIdx)
                 .stream()
                 .map(p -> new PostResponseDto(p))
                 .collect(Collectors.toList());

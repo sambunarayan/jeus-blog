@@ -10,6 +10,8 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.util.Locale;
+
 @RequestMapping("/it/board")
 @RequiredArgsConstructor
 @RestController
@@ -25,6 +27,6 @@ public class ITBulletinBoardRestController {
 
     @GetMapping("/{boardName}/page/{page}")
     public PostPageDto getPostPage(@PathVariable("boardName") String boardName, @PathVariable("page") int page) {
-        return service.findWithPaging(boardName, page);
+        return service.findWithPaging(boardName.toLowerCase(), page);
     }
 }

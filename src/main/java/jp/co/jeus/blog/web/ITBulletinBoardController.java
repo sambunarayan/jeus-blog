@@ -31,13 +31,15 @@ public class ITBulletinBoardController {
     }
 
     @GetMapping("/list/{boardName}")
-    public String board(@PathVariable String boardName, @RequestParam(name = "bno", required = false) Long bno, Model model) {
+    public String board(@PathVariable String boardName, @RequestParam(name = "bno", required = false) Long bno,
+                        @RequestParam(name = "page", required = false) Long page, Model model) {
         model.addAttribute("board_name", boardName);
         model.addAttribute("posts", postService.findByBoardNameDesc(boardName));
         if (bno != null) {
             PostResponseDto resDto = postService.findById(bno);
             model.addAttribute("current_post", new CurrentPostResponseDto(resDto));
         }
+        model.addAttribute("current_page", page == null ? 1 : page);
         return "it-bulletin-board";
     }
 
