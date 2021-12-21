@@ -56,6 +56,13 @@ public class ITBulletinBoardController {
         return "it-bulletin-posting";
     }
 
+    @PostMapping("posting/{board}")
+    public String posting(@PathVariable String board, @RequestParam HashMap<String, String> formData, Model model) {
+        model.addAttribute("board_name", board);
+        model.addAttribute("post", postService.findById(Long.parseLong(formData.get("boardId"))));
+        return "it-bulletin-posting";
+    }
+
     @RequestMapping(value = "register", method = RequestMethod.POST, consumes = MediaType.APPLICATION_FORM_URLENCODED_VALUE)
     public String register(@RequestParam HashMap<String, String> formData, Model model) {
         Board board = boardService.saveBoard(Board.builder()
@@ -66,9 +73,12 @@ public class ITBulletinBoardController {
         return "redirect:/it/board/bulletin";
     }
 
-    @RequestMapping(value = "posting", method = RequestMethod.POST, consumes = MediaType.APPLICATION_FORM_URLENCODED_VALUE)
+    @RequestMapping(value = "posting", method = RequestMethod.PUT, consumes = MediaType.APPLICATION_FORM_URLENCODED_VALUE)
     public String posting(@RequestParam HashMap<String, String> formData, Model model) {
-        Post post = postService.savePost(Post.builder()
+        if (formData.containsKey("post_id")) {
+//            postService.update(id, )
+        }
+        PostResponseDto post = postService.savePost(Post.builder()
                 .boardName(formData.get("board_name"))
                 .title(formData.get("titleInput"))
                 .content(formData.get("contentArea"))

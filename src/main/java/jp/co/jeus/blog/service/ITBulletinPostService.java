@@ -4,6 +4,7 @@ import jp.co.jeus.blog.domain.posts.PostRepository;
 import jp.co.jeus.blog.domain.posts.Post;
 import jp.co.jeus.blog.web.dto.PostPageDto;
 import jp.co.jeus.blog.web.dto.PostResponseDto;
+import jp.co.jeus.blog.web.dto.PostSaveRequestDto;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -51,7 +52,14 @@ public class ITBulletinPostService {
     }
 
     @Transactional
-    public Post savePost(Post post) {
-        return repository.save(post);
+    public PostResponseDto update(Long id, PostSaveRequestDto requestDto) {
+        Post post = repository.findById(id).orElseThrow(() -> new IllegalArgumentException("No result record. id = " + id));
+        post.update(requestDto.getTitle(), requestDto.getContent());
+        return new PostResponseDto(repository.save(post));
+    }
+
+    @Transactional
+    public PostResponseDto savePost(Post post) {
+        return new PostResponseDto(repository.save(post));
     }
 }

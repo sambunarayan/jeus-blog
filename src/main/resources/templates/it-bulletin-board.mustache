@@ -4,22 +4,25 @@
     <div class="p-4 p-md-5 mb-4 border text-black rounded bg-white">
         <div class="d-flex flex-column justify-content-center">
             <h1 class="display-4 font-italic" id="board_name" val="kub">{{board_name}} Diary</h1>
-            <form id="hidden_form">
-            <input type="hidden" id="hidden_board_name" value="{{board_name}}" readonly="readonly">
+            <form action="/it/board/posting/{{board_name}}"  id="hidden_form" method="POST">
+                <input type="hidden" id="hidden_board_name" value="{{board_name}}" readonly="readonly">
                 <input type="hidden" id="hidden_current_page" value="{{current_page}}" readonly="readonly">
+                {{#current_post}}
+                    <input type="hidden" id="hidden_id" name="boardId" value="{{id}}" readonly="readonly">
+                    <article class="blog-post" id="blog-post">
+                        <hr>
+                        <h2 class="blog-post-title" id="post-title">{{title}}</h2>
+                        <p class="blog-post-meta">{{createdDate}} by {{author}}</p>
+                        <p>
+                            {{#content}}
+                                {{.}}<br>
+                            {{/content}}
+                        </p>
+                    </article>
+<!--                    <a href="/it/board/posting/{{board_name}}" class="btn btn-primary active" role="button">Edit</a>-->
+                    <input type="submit" class="btn btn-primary active" value="Edit"/>
+                {{/current_post}}
             </form>
-            {{#current_post}}
-                <article class="blog-post" id="blog-post">
-                    <hr>
-                    <h2 class="blog-post-title" id="post-title">{{title}}</h2>
-                    <p class="blog-post-meta">{{createdDate}} by {{author}}</p>
-                    <p>
-                        {{#content}}
-                            {{.}}<br>
-                        {{/content}}
-                    </p>
-                </article>
-            {{/current_post}}
             <hr>
             <table class="table">
                 <thead class="thead-strong">
