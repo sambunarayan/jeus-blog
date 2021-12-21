@@ -1,5 +1,6 @@
 package jp.co.jeus.blog.web;
 
+import jp.co.jeus.blog.domain.posts.Board;
 import jp.co.jeus.blog.domain.posts.Post;
 import jp.co.jeus.blog.service.ITBulletinBoardService;
 import jp.co.jeus.blog.service.ITBulletinPostService;
@@ -30,6 +31,12 @@ public class ITBulletinBoardController {
         return "it-bulletin";
     }
 
+    @GetMapping("register")
+    public String register() {
+
+        return "it-bulletin-board-register";
+    }
+
     @GetMapping("/list/{boardName}")
     public String board(@PathVariable String boardName, @RequestParam(name = "bno", required = false) Long bno,
                         @RequestParam(name = "page", required = false) Long page, Model model) {
@@ -47,6 +54,16 @@ public class ITBulletinBoardController {
     public String posting(@PathVariable String board, Model model) {
         model.addAttribute("board_name", board);
         return "it-bulletin-posting";
+    }
+
+    @RequestMapping(value = "register", method = RequestMethod.POST, consumes = MediaType.APPLICATION_FORM_URLENCODED_VALUE)
+    public String register(@RequestParam HashMap<String, String> formData, Model model) {
+        Board board = boardService.saveBoard(Board.builder()
+                .boardName(formData.get("boardNameInput"))
+                .category(formData.get("categoryInput"))
+                .description(formData.get("detailsArea"))
+                .build());
+        return "redirect:/it/board/bulletin";
     }
 
     @RequestMapping(value = "posting", method = RequestMethod.POST, consumes = MediaType.APPLICATION_FORM_URLENCODED_VALUE)
