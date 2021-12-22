@@ -6,6 +6,7 @@ import jp.co.jeus.blog.service.ITBulletinBoardService;
 import jp.co.jeus.blog.service.ITBulletinPostService;
 import jp.co.jeus.blog.web.dto.CurrentPostResponseDto;
 import jp.co.jeus.blog.web.dto.PostResponseDto;
+import jp.co.jeus.blog.web.dto.PostSaveRequestDto;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
@@ -53,6 +54,7 @@ public class ITBulletinBoardController {
     @GetMapping("posting/{board}")
     public String posting(@PathVariable String board, Model model) {
         model.addAttribute("board_name", board);
+        model.addAttribute("current_page", 1);
         return "it-bulletin-posting";
     }
 
@@ -60,6 +62,7 @@ public class ITBulletinBoardController {
     public String posting(@PathVariable String board, @RequestParam HashMap<String, String> formData, Model model) {
         model.addAttribute("board_name", board);
         model.addAttribute("post", postService.findById(Long.parseLong(formData.get("boardId"))));
+        model.addAttribute("current_page", formData.get("hidden_current_page"));
         return "it-bulletin-posting";
     }
 
@@ -73,17 +76,26 @@ public class ITBulletinBoardController {
         return "redirect:/it/board/bulletin";
     }
 
-    @RequestMapping(value = "posting", method = RequestMethod.PUT, consumes = MediaType.APPLICATION_FORM_URLENCODED_VALUE)
+    @RequestMapping(value = "posting", method = RequestMethod.POST, consumes = MediaType.APPLICATION_FORM_URLENCODED_VALUE)
     public String posting(@RequestParam HashMap<String, String> formData, Model model) {
-        if (formData.containsKey("post_id")) {
-//            postService.update(id, )
+        PostResponseDto post = null;
+        String currPage = "&page=";
+        if (formData.containsKey("id")) {
+            currPage += formData.get("current_page");
+            post = postService.update(PostSaveRequestDto.builder()
+                    .id(Long.parseLong(formData.get("id")))
+                    .title(formData.get("title"))
+                    .content(formData.get("content"))
+                    .build());
+        } else {
+            currPage += "1";
+            post = postService.savePost(Post.builder()
+                    .boardName(formData.get("boardName"))
+                    .title(formData.get("title"))
+                    .content(formData.get("content"))
+                    .author("Guest")
+                    .build());
         }
-        PostResponseDto post = postService.savePost(Post.builder()
-                .boardName(formData.get("board_name"))
-                .title(formData.get("titleInput"))
-                .content(formData.get("contentArea"))
-                .author("Guest")
-                .build());
-        return "redirect:/it/board/list/" + formData.get("board_name") + "?bno=" + post.getId();
+        return "redirect:/it/board/list/" + formData.get("boardName") + "?bno=" + post.getId() + currPage;
     }
 }

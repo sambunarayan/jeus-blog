@@ -4,25 +4,26 @@
         <div class="d-flex flex-column justify-content-center">
             <h1 class="display-4 font-italic">{{board_name}}に投稿する</h1>
             <hr>
-            <form action="/it/board/posting" method="PUT">
-                <input type="hidden" id="board_name" name="board_name" value="{{board_name}}">
+            <form action="/it/board/posting" method="post">
+                <input type="hidden" id="boardName" name="boardName" value="{{board_name}}">
+                <input type="hidden" id="current_page" name="current_page" value="{{current_page}}">
                 {{#post}}
-                    <input type="hidden" id="post_id" name="post_id" value="{{id}}">
+                    <input type="hidden" id="id" name="id" value="{{id}}">
                     <div class="shadow p-3 mb-3 bg-body rounded">
-                        <input type="text" class="form-control" id="titleInput" name="titleInput" value="{{title}}">
+                        <input type="text" class="form-control" id="title" name="title" value="{{title}}">
                     </div>
                     <div class="shadow p-3 mb-3 bg-body rounded">
                         <label for="contentArea" class="form-label">本文</label>
-                        <textarea class="form-control" id="contentArea" name="contentArea" rows="10">{{content}}</textarea>
+                        <textarea class="form-control" id="content" name="content" rows="10">{{content}}</textarea>
                     </div>
                 {{/post}}
                 {{^post}}
                     <div class="shadow p-3 mb-3 bg-body rounded">
-                        <input type="text" class="form-control" id="titleInput" name="titleInput" placeholder="タイトル">
+                        <input type="text" class="form-control" id="title" name="title" placeholder="タイトル">
                     </div>
                     <div class="shadow p-3 mb-3 bg-body rounded">
                         <label for="contentArea" class="form-label">本文</label>
-                        <textarea class="form-control" id="contentArea" name="contentArea" rows="10"></textarea>
+                        <textarea class="form-control" id="content" name="content" rows="10"></textarea>
                     </div>
                 {{/post}}
                 <input type="submit" class="btn btn-primary active" value="Post"/>

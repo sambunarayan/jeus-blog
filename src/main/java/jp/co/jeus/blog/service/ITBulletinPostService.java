@@ -52,8 +52,8 @@ public class ITBulletinPostService {
     }
 
     @Transactional
-    public PostResponseDto update(Long id, PostSaveRequestDto requestDto) {
-        Post post = repository.findById(id).orElseThrow(() -> new IllegalArgumentException("No result record. id = " + id));
+    public PostResponseDto update(PostSaveRequestDto requestDto) {
+        Post post = repository.findById(requestDto.getId()).orElseThrow(() -> new IllegalArgumentException("No result record. id = " + requestDto.getId()));
         post.update(requestDto.getTitle(), requestDto.getContent());
         return new PostResponseDto(repository.save(post));
     }
