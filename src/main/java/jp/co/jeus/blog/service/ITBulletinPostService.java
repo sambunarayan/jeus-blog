@@ -62,4 +62,9 @@ public class ITBulletinPostService {
     public PostResponseDto savePost(Post post) {
         return new PostResponseDto(repository.save(post));
     }
+
+    @Transactional
+    public void deletePost(Long id) {
+        repository.deleteById(id);
+    }
 }
