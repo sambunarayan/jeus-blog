@@ -98,4 +98,8 @@ public class ITBulletinBoardController {
         }
         return "redirect:/it/board/list/" + formData.get("boardName") + "?bno=" + post.getId() + currPage;
     }
+
+    public String deletePost() {
+        return "";
+    }
 }
