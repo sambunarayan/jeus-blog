@@ -5,10 +5,7 @@ import jp.co.jeus.blog.web.dto.PostPageDto;
 import jp.co.jeus.blog.web.dto.PostResponseDto;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.Locale;
 
@@ -28,5 +25,11 @@ public class ITBulletinBoardRestController {
     @GetMapping("/{boardName}/page/{page}")
     public PostPageDto getPostPage(@PathVariable("boardName") String boardName, @PathVariable("page") int page) {
         return service.findWithPaging(boardName.toLowerCase(), page);
+    }
+
+    @DeleteMapping("/delete/post/{id}")
+    public Long deletePost(@PathVariable("id") Long id) {
+        service.deletePost(id);
+        return id;
     }
 }

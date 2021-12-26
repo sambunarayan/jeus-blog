@@ -20,7 +20,7 @@
                         </p>
                     </article>
                     <input type="submit" class="btn btn-primary active" value="Edit"/>
-                    <a class="btn btn-danger" role="button">Delete</a>
+                    <a class="btn btn-danger" role="button" data-toggle="modal" data-target="#deleteModal">Delete</a>
                 {{/current_post}}
             </form>
             <hr>
@@ -40,6 +40,23 @@
             </div>
             <div class="p-4">
                 <a href="/it/board/posting/{{board_name}}" class="btn btn-primary active" role="button">投稿する</a>
+            </div>
+        </div>
+    </div>
+    <!-- dialog box -->
+    <div class="modal" id="deleteModal" tabindex="-1" role="dialog">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Delete post</h5>
+                </div>
+                <div class="modal-body">
+                    <p>Do you want delete post?</p>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    <button type="button" id="modal-btn-delete" class="btn btn-primary" data-dismiss="modal">Delete post</button>
+                </div>
             </div>
         </div>
     </div>

@@ -65,6 +65,7 @@ public class ITBulletinPostService {
 
     @Transactional
     public void deletePost(Long id) {
-        repository.deleteById(id);
+        Post post = repository.findById(id).orElseThrow(() -> new IllegalArgumentException("No data. id=" + id));
+        repository.delete(post);
     }
 }

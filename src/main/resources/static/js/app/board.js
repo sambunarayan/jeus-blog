@@ -63,3 +63,29 @@ $(document).ready(function(){
         $("#pageDiv").html(page);
     }
 });
+
+var main = {
+    init : function() {
+        var _this = this;
+        $('#modal-btn-delete').on('click', function() {
+            _this.delete();
+        });
+    },
+    delete : function() {
+        var id = $('#hidden_id').val();
+        var boardName = $('#hidden_board_name').val();
+        var page = $('#hidden_current_page').val();
+
+        $.ajax({
+            type: 'DELETE',
+            url: '/it/board/delete/post/' + id,
+            dataType: 'json',
+            contentType: 'application/json; charset=utf-8'
+        }).done(function() {
+            window.location.href='/it/board/list/' + boardName + '?page=' + page;
+        }).fail(function(error) {
+            alert(JSON.stringify(error));
+        });
+    }
+}
+main.init();
