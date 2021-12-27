@@ -10,6 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -22,6 +23,12 @@ public class ITBulletinPostService {
     @Transactional
     public PostPageDto findWithPaging(String boardName, int page) {
         List<Post> list = repository.findByBoardNameDesc(boardName);
+        if (list == null || list.isEmpty()) {
+            return PostPageDto.builder()
+                    .totalPostNum(0)
+                    .posts(new ArrayList<>())
+                    .build();
+        }
         int fromIdx = (page - 1) * 10;
         int toIdx = (page * 10) < list.size() ? (page * 10) : list.size() - 1;
         List<PostResponseDto> currPageList = list.subList(fromIdx, toIdx)

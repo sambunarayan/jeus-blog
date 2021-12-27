@@ -45,7 +45,9 @@ public class ITBulletinBoardController {
         model.addAttribute("posts", postService.findByBoardNameDesc(boardName));
         if (bno != null) {
             PostResponseDto resDto = postService.findById(bno);
-            model.addAttribute("current_post", new CurrentPostResponseDto(resDto));
+            if (resDto != null) {
+                model.addAttribute("current_post", new CurrentPostResponseDto(resDto));
+            }
         }
         model.addAttribute("current_page", page == null ? 1 : page);
         return "it-bulletin-board";

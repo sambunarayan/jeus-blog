@@ -30,7 +30,7 @@ $(document).ready(function(){
             tableBody.html(body);
             showPageList(boardName, json.totalPostNum, page);
         }).fail(function (error) {
-            alert(JSON.stringify(error));
+            alert("error ->" + JSON.stringify(error));
         });
     }
 
