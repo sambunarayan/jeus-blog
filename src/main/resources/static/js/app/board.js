@@ -16,8 +16,7 @@ $(document).ready(function(){
         }).done(function(json) {
             var tableBody = $("#tbody");
             var body = "";
-            var no = (json.totalPostNum / 10);
-            no = json.totalPostNum - ((page - 1) * 10) - 1;
+            var no = json.totalPostNum - ((page - 1) * 10);
             json.posts.forEach(function(val, idx) {
                 body += "<tr>";
                 body += "<td>"+ no-- +"</td>";

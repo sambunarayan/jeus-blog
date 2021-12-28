@@ -30,7 +30,7 @@ public class ITBulletinPostService {
                     .build();
         }
         int fromIdx = (page - 1) * 10;
-        int toIdx = (page * 10) < list.size() ? (page * 10) : list.size() - 1;
+        int toIdx = (page * 10) < list.size() ? (page * 10) : list.size();
         List<PostResponseDto> currPageList = list.subList(fromIdx, toIdx)
                 .stream()
                 .map(p -> new PostResponseDto(p))
