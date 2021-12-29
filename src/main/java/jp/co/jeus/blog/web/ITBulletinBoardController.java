@@ -54,9 +54,9 @@ public class ITBulletinBoardController {
     }
 
     @GetMapping("posting/{board}")
-    public String posting(@PathVariable String board, Model model) {
+    public String posting(@PathVariable String board, @RequestParam(name = "page", required = false) Long page, Model model) {
         model.addAttribute("board_name", board);
-        model.addAttribute("current_page", 1);
+        model.addAttribute("current_page", page);
         return "it-bulletin-posting";
     }
 
