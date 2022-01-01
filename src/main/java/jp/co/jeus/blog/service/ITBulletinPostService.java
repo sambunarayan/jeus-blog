@@ -21,6 +21,23 @@ public class ITBulletinPostService {
     private PostRepository repository;
 
     @Transactional
+    public List<PostResponseDto> findLatestPost() {
+        List<PostResponseDto> latestPosts = new ArrayList<>();
+        String preBoardName = "";
+        for (Post post : repository.findAllDesc()) {
+            if (post.getBoardName().equals(preBoardName)) {
+                continue;
+            }
+            latestPosts.add(new PostResponseDto(post));
+            preBoardName = post.getBoardName();
+            if (latestPosts.size() >= 2) {
+                break;
+            }
+        }
+        return latestPosts;
+    }
+
+    @Transactional
     public PostPageDto findWithPaging(String boardName, int page) {
         List<Post> list = repository.findByBoardNameDesc(boardName);
         if (list == null || list.isEmpty()) {
