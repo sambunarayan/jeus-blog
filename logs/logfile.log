@@ -1,0 +1,75 @@
+[INFO ] 2022-01-02 22:48:23.147 [main] Application - Starting Application using Java 14.0.1 on MSI with PID 3240 (D:\Git\jeus-blog\build\classes\java\main started by soyou in D:\Git\jeus-blog)
+[INFO ] 2022-01-02 22:48:23.155 [main] Application - No active profile set, falling back to default profiles: default
+[WARN ] 2022-01-02 22:48:23.184 [main] ConfigDataEnvironment - Property 'spring.profiles' imported from location 'class path resource [application.yml]' is invalid and should be replaced with 'spring.config.activate.on-profile' [origin: class path resource [application.yml] - 8:13]
+[INFO ] 2022-01-02 22:48:23.690 [main] RepositoryConfigurationDelegate - Multiple Spring Data modules found, entering strict repository configuration mode!
+[INFO ] 2022-01-02 22:48:23.692 [main] RepositoryConfigurationDelegate - Bootstrapping Spring Data JDBC repositories in DEFAULT mode.
+[INFO ] 2022-01-02 22:48:23.716 [main] RepositoryConfigurationExtensionSupport - Spring Data JDBC - Could not safely identify store assignment for repository candidate interface jp.co.jeus.blog.domain.posts.BoardRepository. If you want this repository to be a JDBC repository, consider annotating your entities with one of these annotations: org.springframework.data.relational.core.mapping.Table.
+[INFO ] 2022-01-02 22:48:23.718 [main] RepositoryConfigurationExtensionSupport - Spring Data JDBC - Could not safely identify store assignment for repository candidate interface jp.co.jeus.blog.domain.posts.PostRepository. If you want this repository to be a JDBC repository, consider annotating your entities with one of these annotations: org.springframework.data.relational.core.mapping.Table.
+[INFO ] 2022-01-02 22:48:23.723 [main] RepositoryConfigurationDelegate - Finished Spring Data repository scanning in 26 ms. Found 0 JDBC repository interfaces.
+[INFO ] 2022-01-02 22:48:23.733 [main] RepositoryConfigurationDelegate - Multiple Spring Data modules found, entering strict repository configuration mode!
+[INFO ] 2022-01-02 22:48:23.735 [main] RepositoryConfigurationDelegate - Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+[INFO ] 2022-01-02 22:48:23.758 [main] RepositoryConfigurationDelegate - Finished Spring Data repository scanning in 20 ms. Found 2 JPA repository interfaces.
+[INFO ] 2022-01-02 22:48:24.241 [main] TomcatWebServer - Tomcat initialized with port(s): 8080 (http)
+[INFO ] 2022-01-02 22:48:24.248 [main] Http11NioProtocol - Initializing ProtocolHandler ["http-nio-8080"]
+[INFO ] 2022-01-02 22:48:24.251 [main] StandardService - Starting service [Tomcat]
+[INFO ] 2022-01-02 22:48:24.251 [main] StandardEngine - Starting Servlet engine: [Apache Tomcat/9.0.56]
+[INFO ] 2022-01-02 22:48:24.342 [main] [/] - Initializing Spring embedded WebApplicationContext
+[INFO ] 2022-01-02 22:48:24.343 [main] ServletWebServerApplicationContext - Root WebApplicationContext: initialization completed in 1158 ms
+[INFO ] 2022-01-02 22:48:24.366 [main] RegistrationBean - Filter characterEncodingFilter was not registered (possibly already registered?)
+[WARN ] 2022-01-02 22:48:24.399 [main] AnnotationConfigServletWebServerApplicationContext - Exception encountered during context initialization - cancelling refresh attempt: org.springframework.beans.factory.UnsatisfiedDependencyException: Error creating bean with name 'dataSourceScriptDatabaseInitializer' defined in class path resource [org/springframework/boot/autoconfigure/sql/init/DataSourceInitializationConfiguration.class]: Unsatisfied dependency expressed through method 'dataSourceScriptDatabaseInitializer' parameter 0; nested exception is org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'dataSource' defined in class path resource [org/springframework/boot/autoconfigure/jdbc/DataSourceConfiguration$Hikari.class]: Bean instantiation via factory method failed; nested exception is org.springframework.beans.BeanInstantiationException: Failed to instantiate [com.zaxxer.hikari.HikariDataSource]: Factory method 'dataSource' threw exception; nested exception is org.springframework.boot.autoconfigure.jdbc.DataSourceProperties$DataSourceBeanCreationException: Failed to determine a suitable driver class
+[INFO ] 2022-01-02 22:48:24.403 [main] StandardService - Stopping service [Tomcat]
+[INFO ] 2022-01-02 22:48:24.415 [main] ConditionEvaluationReportLoggingListener - 
+
+Error starting ApplicationContext. To display the conditions report re-run your application with 'debug' enabled.
+[ERROR] 2022-01-02 22:48:24.428 [main] LoggingFailureAnalysisReporter - 
+
+***************************
+APPLICATION FAILED TO START
+***************************
+
+Description:
+
+Failed to configure a DataSource: 'url' attribute is not specified and no embedded datasource could be configured.
+
+Reason: Failed to determine a suitable driver class
+
+
+Action:
+
+Consider the following:
+	If you want an embedded database (H2, HSQL or Derby), please put it on the classpath.
+	If you have database settings to be loaded from a particular profile you may need to activate it (no profiles are currently active).
+
+[INFO ] 2022-01-02 22:50:46.850 [main] Application - Starting Application using Java 14.0.1 on MSI with PID 8972 (D:\Git\jeus-blog\build\classes\java\main started by soyou in D:\Git\jeus-blog)
+[INFO ] 2022-01-02 22:50:46.856 [main] Application - No active profile set, falling back to default profiles: default
+[INFO ] 2022-01-02 22:50:47.395 [main] RepositoryConfigurationDelegate - Multiple Spring Data modules found, entering strict repository configuration mode!
+[INFO ] 2022-01-02 22:50:47.396 [main] RepositoryConfigurationDelegate - Bootstrapping Spring Data JDBC repositories in DEFAULT mode.
+[INFO ] 2022-01-02 22:50:47.417 [main] RepositoryConfigurationExtensionSupport - Spring Data JDBC - Could not safely identify store assignment for repository candidate interface jp.co.jeus.blog.domain.posts.BoardRepository. If you want this repository to be a JDBC repository, consider annotating your entities with one of these annotations: org.springframework.data.relational.core.mapping.Table.
+[INFO ] 2022-01-02 22:50:47.419 [main] RepositoryConfigurationExtensionSupport - Spring Data JDBC - Could not safely identify store assignment for repository candidate interface jp.co.jeus.blog.domain.posts.PostRepository. If you want this repository to be a JDBC repository, consider annotating your entities with one of these annotations: org.springframework.data.relational.core.mapping.Table.
+[INFO ] 2022-01-02 22:50:47.420 [main] RepositoryConfigurationDelegate - Finished Spring Data repository scanning in 20 ms. Found 0 JDBC repository interfaces.
+[INFO ] 2022-01-02 22:50:47.429 [main] RepositoryConfigurationDelegate - Multiple Spring Data modules found, entering strict repository configuration mode!
+[INFO ] 2022-01-02 22:50:47.430 [main] RepositoryConfigurationDelegate - Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+[INFO ] 2022-01-02 22:50:47.451 [main] RepositoryConfigurationDelegate - Finished Spring Data repository scanning in 18 ms. Found 2 JPA repository interfaces.
+[INFO ] 2022-01-02 22:50:47.911 [main] TomcatWebServer - Tomcat initialized with port(s): 8080 (http)
+[INFO ] 2022-01-02 22:50:47.917 [main] Http11NioProtocol - Initializing ProtocolHandler ["http-nio-8080"]
+[INFO ] 2022-01-02 22:50:47.918 [main] StandardService - Starting service [Tomcat]
+[INFO ] 2022-01-02 22:50:47.919 [main] StandardEngine - Starting Servlet engine: [Apache Tomcat/9.0.56]
+[INFO ] 2022-01-02 22:50:48.008 [main] [/] - Initializing Spring embedded WebApplicationContext
+[INFO ] 2022-01-02 22:50:48.009 [main] ServletWebServerApplicationContext - Root WebApplicationContext: initialization completed in 1112 ms
+[INFO ] 2022-01-02 22:50:48.036 [main] RegistrationBean - Filter characterEncodingFilter was not registered (possibly already registered?)
+[INFO ] 2022-01-02 22:50:48.123 [main] HikariDataSource - HikariPool-1 - Starting...
+[INFO ] 2022-01-02 22:50:48.177 [main] HikariDataSource - HikariPool-1 - Start completed.
+[INFO ] 2022-01-02 22:50:48.229 [main] LogHelper - HHH000204: Processing PersistenceUnitInfo [name: default]
+[INFO ] 2022-01-02 22:50:48.272 [main] Version - HHH000412: Hibernate ORM core version 5.6.3.Final
+[INFO ] 2022-01-02 22:50:48.414 [main] Version - HCANN000001: Hibernate Commons Annotations {5.1.2.Final}
+[INFO ] 2022-01-02 22:50:48.517 [main] Dialect - HHH000400: Using dialect: org.hibernate.dialect.MariaDB106Dialect
+[INFO ] 2022-01-02 22:50:48.933 [main] JtaPlatformInitiator - HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+[INFO ] 2022-01-02 22:50:48.939 [main] LocalContainerEntityManagerFactoryBean - Initialized JPA EntityManagerFactory for persistence unit 'default'
+[WARN ] 2022-01-02 22:50:49.278 [main] JpaBaseConfiguration$JpaWebConfiguration - spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+[INFO ] 2022-01-02 22:50:49.412 [main] WelcomePageHandlerMapping - Adding welcome page template: index
+[INFO ] 2022-01-02 22:50:49.535 [main] Http11NioProtocol - Starting ProtocolHandler ["http-nio-8080"]
+[INFO ] 2022-01-02 22:50:49.554 [main] TomcatWebServer - Tomcat started on port(s): 8080 (http) with context path ''
+[INFO ] 2022-01-02 22:50:49.562 [main] Application - Started Application in 2.984 seconds (JVM running for 3.711)
+[INFO ] 2022-01-02 22:50:57.921 [http-nio-8080-exec-1] [/] - Initializing Spring DispatcherServlet 'dispatcherServlet'
+[INFO ] 2022-01-02 22:50:57.922 [http-nio-8080-exec-1] DispatcherServlet - Initializing Servlet 'dispatcherServlet'
+[INFO ] 2022-01-02 22:50:57.923 [http-nio-8080-exec-1] DispatcherServlet - Completed initialization in 1 ms
