@@ -4,7 +4,7 @@
     <div class="p-4 p-md-5 mb-4 border text-black rounded bg-white">
         <div class="d-flex flex-column justify-content-center">
             <h1 class="display-4 font-italic" id="board_name" val="kub">{{board_name}} Diary</h1>
-            <form action="/it/board/posting/{{board_name}}"  id="hidden_form" method="POST">
+            <form action="/app/v1/it/board/posting/{{board_name}}"  id="hidden_form" method="POST">
                 <input type="hidden" id="hidden_board_name" value="{{board_name}}" readonly="readonly">
                 <input type="hidden" id="hidden_current_page" name="hidden_current_page" value="{{current_page}}" readonly="readonly">
                 {{#current_post}}
@@ -39,7 +39,7 @@
             <div id="pageDiv">
             </div>
             <div class="p-4">
-                <a href="/it/board/posting/{{board_name}}?page={{current_page}}" class="btn btn-primary active" role="button">Post</a>
+                <a href="/app/v1/it/board/posting/{{board_name}}?page={{current_page}}" class="btn btn-primary active" role="button">Post</a>
             </div>
         </div>
     </div>
@@ -62,5 +62,5 @@
     </div>
 </main><!-- /.container -->
 
-<script src="/js/app/board.js"></script>
+<script src="/app/v1/js/app/board.js"></script>
 {{>layout/footer}}

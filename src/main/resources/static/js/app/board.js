@@ -10,7 +10,7 @@ $(document).ready(function(){
     function showPostList(boardName, page) {
         $.ajax({
             type: 'GET',
-            url: '/it/board/' + boardName +'/page/'+page,
+            url: '/app/v1/it/board/' + boardName +'/page/'+page,
             dataType: 'json',
             contentType: 'application/json; charset=utf-8',
         }).done(function(json) {
@@ -20,7 +20,7 @@ $(document).ready(function(){
             json.posts.forEach(function(val, idx) {
                 body += "<tr>";
                 body += "<td>"+ no-- +"</td>";
-                body += "<td><a id='"+ val.id +"' href='/it/board/list/" + val.boardName
+                body += "<td><a id='"+ val.id +"' href='/app/v1/it/board/list/" + val.boardName
                         + "?bno="+ val.id +"&page=" + page + "'>"+ val.title +"</a></td>";
                 body += "<td>"+ val.author +"</td>";
                 body += "<td>"+ val.createdDate +"</td>";
@@ -49,14 +49,14 @@ $(document).ready(function(){
         var prev = currPageNum != 1;
         var page = "<ul class='pagination pull-right'>";
         if (prev) {
-            page += "<li class='page-item'><a class='page-link' href='/it/board/list/" + boardName + "?page=" + (startNum - 1) + "'>Previous</a></li>";
+            page += "<li class='page-item'><a class='page-link' href='/app/v1/it/board/list/" + boardName + "?page=" + (startNum - 1) + "'>Previous</a></li>";
         }
         for (var i = startNum; i <= endNum; i++) {
             var active = currPageNum == i? "active":"";
-            page+="<li class='page-item " + active +" '><a class='page-link' href='/it/board/list/" + boardName + "?page=" + i + "'>" + i + "</a></li>";
+            page+="<li class='page-item " + active +" '><a class='page-link' href='/app/v1/it/board/list/" + boardName + "?page=" + i + "'>" + i + "</a></li>";
         }
         if (next) {
-            page+="<li class='page-item'><a class='page-link' href='/it/board/list/" + boardName + "?page=" + (endNum + 1) + "'>Next</a></li>";
+            page+="<li class='page-item'><a class='page-link' href='/app/v1/it/board/list/" + boardName + "?page=" + (endNum + 1) + "'>Next</a></li>";
         }
         page += "</ul></div>";
         $("#pageDiv").html(page);
@@ -77,11 +77,11 @@ var main = {
 
         $.ajax({
             type: 'DELETE',
-            url: '/it/board/delete/post/' + id,
+            url: '/app/v1/it/board/delete/post/' + id,
             dataType: 'json',
             contentType: 'application/json; charset=utf-8'
         }).done(function() {
-            window.location.href='/it/board/list/' + boardName + '?page=' + page;
+            window.location.href='/app/v1/it/board/list/' + boardName + '?page=' + page;
         }).fail(function(error) {
             alert(JSON.stringify(error));
         });
