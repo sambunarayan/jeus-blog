@@ -41,4 +41,14 @@ public class ITBulletinBoardService {
     public Board saveBoard(Board board) {
         return repository.save(board);
     }
+
+    /**
+     * Deletes the specified data to the Board table.
+     *
+     * @param board data to be deleted in the Board table
+     */
+    @Transactional
+    public void deleteBoard(Board board) {
+        repository.delete(board);
+    }
 }
