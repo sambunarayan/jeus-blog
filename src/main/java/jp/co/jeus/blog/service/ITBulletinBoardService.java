@@ -18,6 +18,12 @@ public class ITBulletinBoardService {
     @Autowired
     private BoardRepository repository;
 
+    /**
+     * Returns all board data.
+     *
+     * @return Returns a list of boards from the board table.
+     */
+    @Transactional
     public List<BoardResponseDto> findAll() {
         return repository.findAll()
                 .stream()
@@ -25,6 +31,12 @@ public class ITBulletinBoardService {
                 .collect(Collectors.toList());
     }
 
+    /**
+     * Saves the specified data to the Board table.
+     *
+     * @param board data to be stored in the Board table
+     * @return Returns the board data stored in the board table.
+     */
     @Transactional
     public Board saveBoard(Board board) {
         return repository.save(board);

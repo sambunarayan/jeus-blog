@@ -17,9 +17,14 @@ import java.util.stream.Collectors;
 @RequiredArgsConstructor
 @Service
 public class ITBulletinPostService {
+
     @Autowired
     private PostRepository repository;
 
+    /**
+     *
+     * @return
+     */
     @Transactional
     public List<PostResponseDto> findLatestPost() {
         List<PostResponseDto> latestPosts = new ArrayList<>();
@@ -37,6 +42,12 @@ public class ITBulletinPostService {
         return latestPosts;
     }
 
+    /**
+     *
+     * @param boardName
+     * @param page
+     * @return
+     */
     @Transactional
     public PostPageDto findWithPaging(String boardName, int page) {
         List<Post> list = repository.findByBoardNameDesc(boardName);
@@ -55,6 +66,10 @@ public class ITBulletinPostService {
         return new PostPageDto(list.size(), currPageList);
     }
 
+    /**
+     *
+     * @return
+     */
     @Transactional
     public List<PostResponseDto> findAllDesc() {
         return repository.findAllDesc().stream()
@@ -62,6 +77,11 @@ public class ITBulletinPostService {
                 .collect(Collectors.toList());
     }
 
+    /**
+     *
+     * @param boardName
+     * @return
+     */
     @Transactional
     public List<PostResponseDto> findByBoardNameDesc(String boardName) {
         return repository.findByBoardNameDesc(boardName).stream()
@@ -69,12 +89,22 @@ public class ITBulletinPostService {
                 .collect(Collectors.toList());
     }
 
+    /**
+     *
+     * @param id
+     * @return
+     */
     @Transactional
     public PostResponseDto findById(Long id) {
         Post post = repository.findById(id).orElseThrow(() -> new IllegalArgumentException("No result record. id = " + id));
         return new PostResponseDto(post);
     }
 
+    /**
+     *
+     * @param requestDto
+     * @return
+     */
     @Transactional
     public PostResponseDto update(PostSaveRequestDto requestDto) {
         Post post = repository.findById(requestDto.getId()).orElseThrow(() -> new IllegalArgumentException("No result record. id = " + requestDto.getId()));
@@ -82,11 +112,20 @@ public class ITBulletinPostService {
         return new PostResponseDto(repository.save(post));
     }
 
+    /**
+     *
+     * @param post
+     * @return
+     */
     @Transactional
     public PostResponseDto savePost(Post post) {
         return new PostResponseDto(repository.save(post));
     }
 
+    /**
+     *
+     * @param id
+     */
     @Transactional
     public void deletePost(Long id) {
         Post post = repository.findById(id).orElseThrow(() -> new IllegalArgumentException("No data. id=" + id));

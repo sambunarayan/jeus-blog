@@ -25,7 +25,7 @@ public class TimerAspect {
     public Object timerLog(ProceedingJoinPoint joinPoint) throws Throwable {
         long start = System.currentTimeMillis();
         String targetName = joinPoint.getSignature().getDeclaringTypeName();
-        targetName = targetName.substring(targetName.lastIndexOf(".")) + "." + joinPoint.getSignature().getName();
+        targetName = targetName.substring(targetName.lastIndexOf(".") + 1) + "." + joinPoint.getSignature().getName();
         Object res = joinPoint.proceed();
         log.info(targetName + " " + (System.currentTimeMillis() - start) + "ms");
         return res;

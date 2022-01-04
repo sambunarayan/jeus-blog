@@ -41,7 +41,7 @@ public class BoardRepositoryTest {
         assertThat(res.getCategory()).isEqualTo(board.getCategory());
         assertThat(res.getDescription()).isEqualTo(board.getDescription());
 
-//        repository.delete(board);
+        repository.delete(board);
     }
 
 }
