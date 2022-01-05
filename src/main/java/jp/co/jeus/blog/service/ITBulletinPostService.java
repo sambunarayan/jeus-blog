@@ -68,17 +68,6 @@ public class ITBulletinPostService {
 
     /**
      *
-     * @return
-     */
-    @Transactional
-    public List<PostResponseDto> findAllDesc() {
-        return repository.findAllDesc().stream()
-                .map(p -> new PostResponseDto(p))
-                .collect(Collectors.toList());
-    }
-
-    /**
-     *
      * @param boardName
      * @return
      */
