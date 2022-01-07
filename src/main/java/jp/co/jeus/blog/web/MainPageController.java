@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 
 @RequiredArgsConstructor
 @Controller
-public class IndexController {
+public class MainPageController {
 
     @Autowired
     private ITBulletinPostService service;

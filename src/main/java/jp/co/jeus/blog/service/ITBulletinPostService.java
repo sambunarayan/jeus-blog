@@ -35,7 +35,7 @@ public class ITBulletinPostService {
             }
             latestPosts.add(new PostResponseDto(post));
             preBoardName = post.getBoardName();
-            if (latestPosts.size() >= 2) {
+            if (latestPosts.size() >= 10) {
                 break;
             }
         }
