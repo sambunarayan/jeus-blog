@@ -38,7 +38,7 @@ public class ITBulletinPostServiceTest {
         Post post = getNewPost();
         PostResponseDto responseDto = service.savePost(post);
 
-        List<PostResponseDto> resList = service.findLatestPost();
+        List<PostResponseDto> resList = service.findLatestPost(-1L);
         assertThat(resList.get(0).getId()).isEqualTo(responseDto.getId());
         assertThat(resList.get(0).getBoardName()).isEqualTo(responseDto.getBoardName());
         assertThat(resList.get(0).getTitle()).isEqualTo(responseDto.getTitle());

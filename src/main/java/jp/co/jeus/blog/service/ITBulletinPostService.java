@@ -6,6 +6,7 @@ import jp.co.jeus.blog.web.dto.PostPageDto;
 import jp.co.jeus.blog.web.dto.PostResponseDto;
 import jp.co.jeus.blog.web.dto.PostSaveRequestDto;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.log4j.Log4j2;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -14,6 +15,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
+@Log4j2
 @RequiredArgsConstructor
 @Service
 public class ITBulletinPostService {
@@ -26,15 +28,12 @@ public class ITBulletinPostService {
      * @return
      */
     @Transactional
-    public List<PostResponseDto> findLatestPost() {
+    public List<PostResponseDto> findLatestPost(Long id) {
         List<PostResponseDto> latestPosts = new ArrayList<>();
-        String preBoardName = "";
-        for (Post post : repository.findAllDesc()) {
-            if (post.getBoardName().equals(preBoardName)) {
-                continue;
-            }
+        List<Post> posts = id <= 0 ? repository.findAllDesc() : repository.findLatestPosts(id);
+        log.debug(posts);
+        for (Post post : posts) {
             latestPosts.add(new PostResponseDto(post));
-            preBoardName = post.getBoardName();
             if (latestPosts.size() >= 10) {
                 break;
             }
