@@ -1,5 +1,6 @@
 package jp.co.jeus.blog.service;
 
+import jp.co.jeus.blog.domain.posts.BoardRepository;
 import jp.co.jeus.blog.domain.posts.PostRepository;
 import jp.co.jeus.blog.domain.posts.Post;
 import jp.co.jeus.blog.web.dto.PostPageDto;
@@ -13,6 +14,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 import java.util.stream.Collectors;
 
 @Log4j2
@@ -22,6 +24,8 @@ public class ITBulletinPostService {
 
     @Autowired
     private PostRepository repository;
+    @Autowired
+    private BoardRepository boardRepository;
 
     /**
      *
@@ -31,10 +35,14 @@ public class ITBulletinPostService {
     public List<PostResponseDto> findLatestPost(Long id) {
         List<PostResponseDto> latestPosts = new ArrayList<>();
         List<Post> posts = id <= 0 ? repository.findAllDesc() : repository.findLatestPosts(id);
+        Map<String, String> colorMap = boardRepository
+                .findAll()
+                .stream()
+                .collect(Collectors.toMap(b -> b.getBoardName(), b -> b.getColor()));
         log.debug(posts);
         for (Post post : posts) {
-            latestPosts.add(new PostResponseDto(post));
-            if (latestPosts.size() >= 10) {
+            latestPosts.add(new PostResponseDto(post, colorMap.get(post.getBoardName())));
+            if (latestPosts.size() >= 5) {
                 break;
             }
         }

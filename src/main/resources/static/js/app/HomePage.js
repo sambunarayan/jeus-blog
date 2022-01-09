@@ -2,11 +2,9 @@ $(document).ready(function() {
     refresh();
     function refresh() {
         $(window).scroll(function() {
-//            alert("end of " + $(window).scrollTop() + "," + $(document).height() + "," + $(window).height());
-//            if($(window).scrollTop() >= $(document).height() - $(window).height() - $('#footer').height()) {
-            if($(window).scrollTop() >= $(document).height() - $(window).height()) {
+            if ($(window).scrollTop() >= $(document).height() - $(window).height() - ($('#footer').height() / 10)) {
                    // ajax call get data from server and append to the div
-//                   alert("end of " + $("#last_post_id").val());
+//                   alert("end of ");
                    addLatestPostList($("#last_post_id").val());
             }
         });
@@ -26,7 +24,7 @@ $(document).ready(function() {
             json.forEach(function(val, idx) {
                 body += "<div class='row g-0 border rounded overflow-hidden flex-md-row mb-4 shadow-sm h-md-250 position-relative'>";
                 body += "    <div class='col p-4 d-flex flex-column position-static'>";
-                body += "        <strong class='d-inline-block mb-2 text-primary'>{{boardName}}</strong>";
+                body += "        <strong class='d-inline-block mb-2 " + val.boardNameColor + "'>" + val.boardName + "</strong>";
                 body += "        <h3 class='mb-0'>" + val.title + "</h3>";
                 body += "        <div class='mb-1 text-muted'>" + val.createdDate+ "</div>";
                 body += "        <p class='card-text mb-auto'>" + val.content + "</p>";
@@ -44,7 +42,9 @@ $(document).ready(function() {
                 body += "</div>";
                 $('#last_post_id').val(val.id);
             });
-            $('#timeline').append(body);
+            if (body != "") {
+                $('#timeline').append(body);
+            }
         }).fail(function (error) {
             alert("error ->" + JSON.stringify(error));
         });
