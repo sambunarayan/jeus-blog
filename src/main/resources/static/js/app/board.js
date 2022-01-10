@@ -2,12 +2,13 @@ $(document).ready(function(){
     list();
     function list() {
         var regForm = $("#hidden_form");
-        showPostList(regForm.find('#hidden_board_name').val(), regForm.find('#hidden_current_page').val());
+        showPostList(regForm.find('#hidden_board_name').val(),
+            regForm.find('#hidden_current_page').val(), regForm.find('#hidden_id').val());
     }
     /**
      * Show post list
      */
-    function showPostList(boardName, page) {
+    function showPostList(boardName, page, currId) {
         $.ajax({
             type: 'GET',
             url: '/app/v1/it/board/' + boardName +'/page/'+page,
@@ -18,7 +19,11 @@ $(document).ready(function(){
             var body = "";
             var no = json.totalPostNum - ((page - 1) * 10);
             json.posts.forEach(function(val, idx) {
-                body += "<tr>";
+                let active = "";
+                if (currId == val.id) {
+                    active = "table-active";
+                }
+                body += "<tr class='"+ active +"'>";
                 body += "<td>"+ no-- +"</td>";
                 body += "<td><a id='"+ val.id +"' href='/app/v1/it/board/list/" + val.boardName
                         + "?bno="+ val.id +"&page=" + page + "'>"+ val.title +"</a></td>";
