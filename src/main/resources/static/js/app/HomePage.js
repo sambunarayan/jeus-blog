@@ -1,11 +1,20 @@
 $(document).ready(function() {
-    refresh();
-    function refresh() {
+    var lastIdx = 999999999;
+    init();
+    showLatestPostList();
+    function init() {
+        addLatestPostList($("#last_post_id").val());
+    }
+    function showLatestPostList() {
         $(window).scroll(function() {
             if ($(window).scrollTop() >= $(document).height() - $(window).height() - ($('#footer').height() / 10)) {
                    // ajax call get data from server and append to the div
 //                   alert("end of ");
-                   addLatestPostList($("#last_post_id").val());
+               let currIdx = $("#last_post_id").val();
+               if (lastIdx != currIdx) {
+                  lastIdx = currIdx;
+                  addLatestPostList(currIdx);
+               }
             }
         });
     }
@@ -48,5 +57,6 @@ $(document).ready(function() {
         }).fail(function (error) {
             alert("error ->" + JSON.stringify(error));
         });
+        lock = false;
     }
 });

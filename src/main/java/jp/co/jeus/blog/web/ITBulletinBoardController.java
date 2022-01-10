@@ -73,6 +73,7 @@ public class ITBulletinBoardController {
         Board board = boardService.saveBoard(Board.builder()
                 .boardName(formData.get("boardNameInput"))
                 .category(formData.get("categoryInput"))
+                .color(formData.get("colorSelect"))
                 .description(formData.get("detailsArea"))
                 .build());
         return "redirect:/it/board/bulletin";

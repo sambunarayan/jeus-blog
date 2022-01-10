@@ -21,9 +21,10 @@ public class MainPageController {
 
     @GetMapping
     public String index(Model model) {
-        List<PostResponseDto> posts = service.findLatestPost(-1L);
-        model.addAttribute("LatestPost", posts);
-        model.addAttribute("LastIndexId", posts.get(posts.size() - 1).getId());
+//        List<PostResponseDto> posts = service.findLatestPost(-1L);
+//        model.addAttribute("LatestPost", posts);
+//        model.addAttribute("LastIndexId", posts.get(posts.size() - 1).getId());
+        model.addAttribute("LastIndexId", Integer.MAX_VALUE);
         return "index";
     }
 }

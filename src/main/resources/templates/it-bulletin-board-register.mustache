@@ -6,10 +6,26 @@
             <hr>
             <form action="/app/v1/it/board/register" method="POST">
                 <div class="shadow p-3 mb-3 bg-body rounded">
-                    <input type="text" class="form-control" id="boardNameInput" name="boardNameInput" placeholder="Board Name">
+                    <input type="text" class="form-control" id="boardNameInput" name="boardNameInput"
+                           placeholder="Board Name">
                 </div>
                 <div class="shadow p-3 mb-3 bg-body rounded">
-                    <input type="text" class="form-control" id="categoryInput" name="categoryInput" placeholder="it" value="it" readonly>
+                    <input type="text" class="form-control" id="categoryInput" name="categoryInput" placeholder="it"
+                           value="it" readonly>
+                </div>
+                <div class="shadow p-3 mb-3 bg-body rounded">
+                    <select class="form-select" aria-label="Default select example" id="colorSelect" name="colorSelect" value="text-dark">
+                        <option value="text-dark">Color</option>
+                        <option class="bg-blue" value="text-blue">Blue</option>
+                        <option class="bg-indigo" value="text-indigo">Indigo</option>
+                        <option class="bg-pink" value="text-pink">Pink</option>
+                        <option class="bg-red" value="text-red">Red</option>
+                        <option class="bg-yellow" value="text-yellow">Yellow</option>
+                        <option class="bg-orange" value="text-orange">Orange</option>
+                        <option class="bg-teal" value="text-teal">Teal</option>
+                        <option class="bg-green" value="text-green">Green</option>
+                        <option class="bg-light-dark" value="text-light-dark">Light dark</option>
+                    </select>
                 </div>
                 <div class="shadow p-3 mb-3 bg-body rounded">
                     <label for="contentArea" class="form-label">Details</label>
@@ -20,4 +36,5 @@
         </div>
     </div>
 </main><!-- /.container -->
+<script src="/app/v1/js/app/board-register.js"></script>
 {{>layout/footer}}
