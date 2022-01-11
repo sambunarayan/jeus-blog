@@ -8,8 +8,6 @@ $(document).ready(function() {
     function showLatestPostList() {
         $(window).scroll(function() {
             if ($(window).scrollTop() >= $(document).height() - $(window).height() - ($('#footer').height() / 10)) {
-                   // ajax call get data from server and append to the div
-//                   alert("end of ");
                let currIdx = $("#last_post_id").val();
                if (lastIdx != currIdx) {
                   lastIdx = currIdx;
@@ -22,7 +20,7 @@ $(document).ready(function() {
      * Show post list
      */
     function addLatestPostList(lastIdx) {
-//        alert($('#last_post_id').val());
+        // ajax call get data from server and append to the div
         $.ajax({
             type: 'GET',
             url: '/app/v1/it/board/latest/'+lastIdx,
@@ -57,6 +55,5 @@ $(document).ready(function() {
         }).fail(function (error) {
             alert("error ->" + JSON.stringify(error));
         });
-        lock = false;
     }
 });
