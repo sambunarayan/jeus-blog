@@ -34,7 +34,6 @@ public class ITBulletinBoardController {
 
     @GetMapping("register")
     public String register() {
-
         return "it-bulletin-board-register";
     }
 
