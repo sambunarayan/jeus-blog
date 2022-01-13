@@ -1,12 +1,16 @@
 package jp.co.jeus.blog.web;
 
+import jp.co.jeus.blog.web.dto.BoardResponseDto;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.web.servlet.MockMvc;
+import org.springframework.test.web.servlet.MvcResult;
 
-import static org.hamcrest.Matchers.is;
+import java.util.List;
+
+import static org.assertj.core.api.Assertions.assertThat;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
 
@@ -19,8 +23,15 @@ public class ITBulletinBoardControllerTest {
 
     @Test
     public void findAll() throws Exception {
-        mvc.perform(get("/it/board/bulletin"))
-                .andExpect(status().isOk());
+        // when
+        MvcResult result = mvc.perform(get("/it/board/bulletin"))
+                .andExpect(status().isOk())
+                .andExpect(view().name("it-bulletin"))
+                .andReturn();
+        // get response dto list
+        List<BoardResponseDto> list = (List<BoardResponseDto>) result.getModelAndView().getModel().get("boards");
+        // then
+        assertThat(list.size()).isGreaterThan(0);
     }
 
     @Test
