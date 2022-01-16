@@ -22,8 +22,7 @@ public class CustomControllerAdvice {
 
     @ModelAttribute("trackingId")
     public String addOneObject(@RequestHeader("X-Tracking-Id") Optional<String> trackingId) {
-        log.debug("addOneObject : {}", trackingId);
-        // Modelに追加するオブジェクトを返却する
+        // Return the object to be added to Model
         return trackingId.orElse(UUID.randomUUID().toString());
     }
 

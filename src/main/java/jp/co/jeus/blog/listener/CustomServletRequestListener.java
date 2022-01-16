@@ -22,7 +22,8 @@ public class CustomServletRequestListener implements ServletRequestListener {
     @Override
     public void requestInitialized(ServletRequestEvent sre) {
         // when request received
-        log.debug(((HttpServletRequest) sre.getServletRequest()).getRequestURI() + " [START]");
+        HttpServletRequest req = (HttpServletRequest) sre.getServletRequest();
+        log.debug("{}-[{}]-[START]", req.getRequestURI(), req.getHeader("X-Tracking-Id"));
     }
 
     @Override

@@ -4,6 +4,7 @@ import jp.co.jeus.blog.domain.posts.Board;
 import jp.co.jeus.blog.form.BoardValidationForm;
 import jp.co.jeus.blog.service.ITBulletinBoardService;
 import jp.co.jeus.blog.validate.BoardValidator;
+import lombok.extern.log4j.Log4j2;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.stereotype.Controller;
@@ -15,6 +16,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.HashMap;
 
+@Log4j2
 @RequestMapping("/it/board/main")
 @Controller
 public class ITBoardController {
@@ -31,6 +33,7 @@ public class ITBoardController {
 
     @GetMapping("bulletin")
     public String board(Model model) {
+        log.debug("X-Tracking-Id --> " + model.getAttribute("trackingId"));
         model.addAttribute("boards", boardService.findAll());
         return "it-bulletin";
     }
