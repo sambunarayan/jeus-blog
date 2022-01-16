@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
-@RequestMapping("/it/board")
+@RequestMapping("/it/board/post")
 @RequiredArgsConstructor
 @RestController
 public class ITBulletinBoardRestController {

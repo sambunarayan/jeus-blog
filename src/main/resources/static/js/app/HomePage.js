@@ -23,7 +23,7 @@ $(document).ready(function() {
         // ajax call get data from server and append to the div
         $.ajax({
             type: 'GET',
-            url: '/app/v1/it/board/latest/'+lastIdx,
+            url: '/app/v1/it/board/post/latest/'+lastIdx,
             dataType: 'json',
             contentType: 'application/json; charset=utf-8',
         }).done(function(json) {
@@ -35,7 +35,7 @@ $(document).ready(function() {
                 body += "        <h3 class='mb-0'>" + val.title + "</h3>";
                 body += "        <div class='mb-1 text-muted'>" + val.createdDate+ "</div>";
                 body += "        <p class='card-text mb-auto'>" + val.content + "</p>";
-                body += "        <a href='/app/v1/it/board/list/" + val.boardName + "?bno=" + val.id + "' class='stretched-link'>Continue";
+                body += "        <a href='/app/v1/it/board/post/list/" + val.boardName + "?bno=" + val.id + "' class='stretched-link'>Continue";
                 body += "        reading</a>";
                 body += "    </div>";
                 body += "    <div class='col-auto d-none d-lg-block'>";

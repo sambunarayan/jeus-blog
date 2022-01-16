@@ -4,7 +4,7 @@
         <div class="d-flex flex-column justify-content-center">
             <h1 class="display-4 font-italic">{{board_name}}に投稿する</h1>
             <hr>
-            <form action="/app/v1/it/board/posting" method="post">
+            <form action="/app/v1/it/board/post/posting" method="post">
                 <input type="hidden" id="boardName" name="boardName" value="{{board_name}}">
                 <input type="hidden" id="current_page" name="current_page" value="{{current_page}}">
                 {{#post}}
@@ -18,7 +18,7 @@
                     </div>
                     <div>
                         <input type="submit" class="btn btn-primary active" value="Post"/>
-                        <a href="/app/v1/it/board/list/{{board_name}}?bno={{id}}&page={{current_page}}"class="btn btn-secondary">Cancel</a>
+                        <a href="/app/v1/it/board/post/list/{{board_name}}?bno={{id}}&page={{current_page}}"class="btn btn-secondary">Cancel</a>
                     </div>
                 {{/post}}
                 {{^post}}
@@ -31,7 +31,7 @@
                     </div>
                     <div>
                         <input type="submit" class="btn btn-primary active" value="Post"/>
-                        <a href="/app/v1/it/board/list/{{board_name}}?page={{current_page}}"class="btn btn-default">Cancel</a>
+                        <a href="/app/v1/it/board/post/list/{{board_name}}?page={{current_page}}"class="btn btn-default">Cancel</a>
                     </div>
                 {{/post}}
             </form>

@@ -1,8 +1,6 @@
 package jp.co.jeus.blog.web;
 
-import jp.co.jeus.blog.domain.posts.Board;
 import jp.co.jeus.blog.domain.posts.Post;
-import jp.co.jeus.blog.service.ITBulletinBoardService;
 import jp.co.jeus.blog.service.ITBulletinPostService;
 import jp.co.jeus.blog.web.dto.CurrentPostResponseDto;
 import jp.co.jeus.blog.web.dto.PostResponseDto;
@@ -17,25 +15,12 @@ import org.springframework.web.bind.annotation.*;
 import java.util.HashMap;
 
 @RequiredArgsConstructor
-@RequestMapping("/it/board")
+@RequestMapping("/it/board/post")
 @Controller
 public class ITBulletinBoardController {
 
     @Autowired
     private ITBulletinPostService postService;
-    @Autowired
-    private ITBulletinBoardService boardService;
-
-    @GetMapping("bulletin")
-    public String board(Model model) {
-        model.addAttribute("boards", boardService.findAll());
-        return "it-bulletin";
-    }
-
-    @GetMapping("register")
-    public String register() {
-        return "it-bulletin-board-register";
-    }
 
     @GetMapping("/list/{boardName}")
     public String board(@PathVariable String boardName, @RequestParam(name = "bno", required = false) Long bno,
@@ -67,17 +52,6 @@ public class ITBulletinBoardController {
         return "it-bulletin-posting";
     }
 
-    @RequestMapping(value = "register", method = RequestMethod.POST, consumes = MediaType.APPLICATION_FORM_URLENCODED_VALUE)
-    public String register(@RequestParam HashMap<String, String> formData, Model model) {
-        Board board = boardService.saveBoard(Board.builder()
-                .boardName(formData.get("boardNameInput"))
-                .category(formData.get("categoryInput"))
-                .color(formData.get("colorSelect"))
-                .description(formData.get("detailsArea"))
-                .build());
-        return "redirect:/it/board/bulletin";
-    }
-
     @RequestMapping(value = "posting", method = RequestMethod.POST, consumes = MediaType.APPLICATION_FORM_URLENCODED_VALUE)
     public String posting(@RequestParam HashMap<String, String> formData, Model model) {
         PostResponseDto post = null;
@@ -98,6 +72,6 @@ public class ITBulletinBoardController {
                     .author("Guest")
                     .build());
         }
-        return "redirect:/it/board/list/" + formData.get("boardName") + "?bno=" + post.getId() + currPage;
+        return "redirect:/it/board/post/list/" + formData.get("boardName") + "?bno=" + post.getId() + currPage;
     }
 }

@@ -1,4 +1,4 @@
-package jp.co.jeus.blog.aop;
+package jp.co.jeus.blog.aspect;
 
 import lombok.extern.log4j.Log4j2;
 import org.aspectj.lang.ProceedingJoinPoint;
@@ -21,7 +21,7 @@ public class TimerAspect {
     public @interface Timer {
     }
 
-    @Around("@annotation(jp.co.jeus.blog.aop.TimerAspect.Timer)")
+    @Around("@annotation(jp.co.jeus.blog.aspect.TimerAspect.Timer)")
     public Object timerLog(ProceedingJoinPoint joinPoint) throws Throwable {
         long start = System.currentTimeMillis();
         String targetName = joinPoint.getSignature().getDeclaringTypeName();

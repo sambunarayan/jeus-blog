@@ -1,6 +1,6 @@
 package jp.co.jeus.blog.domain.posts;
 
-import jp.co.jeus.blog.aop.TimerAspect;
+import jp.co.jeus.blog.aspect.TimerAspect;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 

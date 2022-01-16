@@ -1,4 +1,4 @@
-package jp.co.jeus.blog.web.filter;
+package jp.co.jeus.blog.filter;
 
 import lombok.extern.log4j.Log4j2;
 import org.springframework.stereotype.Component;
