@@ -20,5 +20,12 @@ public class BoardValidator implements Validator {
         BoardValidationForm validationForm = (BoardValidationForm) form;
         log.debug("::::::::::::::::: validate ::::::::::::::::");
         log.debug("validate ----->" + validationForm.getBoardNameInput());
+        if (validationForm.getBoardNameInput() == null || validationForm.getBoardNameInput().isBlank()) {
+            errors.rejectValue("boardNameInput","is empty");
+        } else {
+            if (validationForm.getBoardNameInput().length() > 35) {
+                errors.rejectValue("boardNameInput","Too long length");
+            }
+        }
     }
 }
