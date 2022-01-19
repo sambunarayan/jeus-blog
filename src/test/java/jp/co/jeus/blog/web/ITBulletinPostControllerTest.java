@@ -1,11 +1,14 @@
 package jp.co.jeus.blog.web;
 
+import jp.co.jeus.blog.web.dto.PostResponseDto;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.web.servlet.MockMvc;
+import org.springframework.test.web.servlet.MvcResult;
 
+import static org.assertj.core.api.Assertions.assertThat;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
@@ -44,11 +47,14 @@ public class ITBulletinPostControllerTest {
         String page = "1";
         long id = 1;
 
-        mvc.perform(post("/it/board/post/posting/" + boardName)
+        MvcResult result = mvc.perform(post("/it/board/post/posting/" + boardName)
                         .param("boardId", String.valueOf(id))
                         .param("hidden_current_page", page))
                 .andExpect(status().isOk())
                 .andExpect(view().name("it-bulletin-posting"))
-                .andExpect(model().attribute("current_page", page));
+                .andExpect(model().attribute("current_page", page))
+                .andReturn();
+        // Evaluate response dto.
+        assertThat(((PostResponseDto) result.getModelAndView().getModelMap().get("post")).getId()).isEqualTo(id);
     }
 }
