@@ -7,16 +7,14 @@ import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMock
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.MvcResult;
-
 import java.util.List;
-
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
 
 @SpringBootTest
 @AutoConfigureMockMvc
-public class ITBulletinBoardControllerTest {
+public class ITBoardControllerTest {
 
     @Autowired
     private MockMvc mvc;
@@ -24,7 +22,7 @@ public class ITBulletinBoardControllerTest {
     @Test
     public void findAll() throws Exception {
         // when
-        MvcResult result = mvc.perform(get("/it/board/bulletin"))
+        MvcResult result = mvc.perform(get("/it/board/main/bulletin"))
                 .andExpect(status().isOk())
                 .andExpect(view().name("it-bulletin"))
                 .andReturn();
@@ -36,17 +34,9 @@ public class ITBulletinBoardControllerTest {
 
     @Test
     public void register() throws Exception {
-        mvc.perform(get("/it/board/register"))
+        mvc.perform(get("/it/board/main/register"))
                 .andExpect(status().isOk())
                 .andExpect(view().name("it-bulletin-board-register"));
     }
 
-    @Test
-    public void board() throws Exception {
-        String expectedBoardName = "Kubernetes";
-
-        mvc.perform(get("/it/board/list/Kubernetes"))
-                .andExpect(status().isOk())
-                .andExpect(model().attribute("board_name", expectedBoardName));
-    }
 }

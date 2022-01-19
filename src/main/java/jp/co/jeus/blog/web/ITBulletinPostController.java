@@ -17,7 +17,7 @@ import java.util.HashMap;
 @RequiredArgsConstructor
 @RequestMapping("/it/board/post")
 @Controller
-public class ITBulletinBoardController {
+public class ITBulletinPostController {
 
     @Autowired
     private ITBulletinPostService postService;

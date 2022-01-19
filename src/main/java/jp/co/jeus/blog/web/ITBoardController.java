@@ -47,7 +47,7 @@ public class ITBoardController {
     @RequestMapping(value = "register", method = RequestMethod.POST, consumes = MediaType.APPLICATION_FORM_URLENCODED_VALUE)
     public String register(@Validated BoardValidationForm form, BindingResult bindingResult, @RequestParam HashMap<String, String> formData, Model model) {
         if (bindingResult.hasErrors()) {
-            return "register";
+            return "/it/board/main/register";
         }
         Board board = boardService.saveBoard(Board.builder()
                 .boardName(formData.get("boardNameInput"))
