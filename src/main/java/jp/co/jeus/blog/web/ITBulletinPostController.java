@@ -6,14 +6,17 @@ import jp.co.jeus.blog.web.dto.CurrentPostResponseDto;
 import jp.co.jeus.blog.web.dto.PostResponseDto;
 import jp.co.jeus.blog.web.dto.PostSaveRequestDto;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.log4j.Log4j2;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 
 import java.util.HashMap;
 
+@Log4j2
 @RequiredArgsConstructor
 @RequestMapping("/it/board/post")
 @Controller
@@ -52,8 +55,11 @@ public class ITBulletinPostController {
         return "it-bulletin-posting";
     }
 
-    @RequestMapping(value = "posting", method = RequestMethod.POST, consumes = MediaType.APPLICATION_FORM_URLENCODED_VALUE)
-    public String posting(@RequestParam HashMap<String, String> formData, Model model) {
+    @RequestMapping(value = "posting", method = RequestMethod.POST)
+    public String posting(@RequestParam HashMap<String, String> formData, Model model, MultipartFile[] uploadFile) {
+        for (MultipartFile file : uploadFile) {
+            log.info("File name ---> " + file.getName());
+        }
         PostResponseDto post = null;
         String currPage = "&page=";
         if (formData.containsKey("id")) {

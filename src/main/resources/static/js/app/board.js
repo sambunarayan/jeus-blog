@@ -1,6 +1,14 @@
 $(document).ready(function(){
+    refreshPost();
     list();
+    function refreshPost() {
+        var content = document.getElementById("content");
+        if (content != null) {
+            $("#content").html(content.textContent);
+        }
+    }
     function list() {
+
         var regForm = $("#hidden_form");
         showPostList(regForm.find('#hidden_board_name').val(),
             regForm.find('#hidden_current_page').val(), regForm.find('#hidden_id').val());
