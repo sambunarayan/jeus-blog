@@ -58,7 +58,7 @@ public class ITBulletinPostController {
     @RequestMapping(value = "posting", method = RequestMethod.POST)
     public String posting(@RequestParam HashMap<String, String> formData, Model model, MultipartFile[] uploadFile) {
         for (MultipartFile file : uploadFile) {
-            log.info("File name ---> " + file.getName());
+            log.info("File name ---> " + file.getOriginalFilename());
         }
         PostResponseDto post = null;
         String currPage = "&page=";
