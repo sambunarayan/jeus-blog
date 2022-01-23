@@ -38,7 +38,13 @@ public class ITBoardController {
         return "it-bulletin";
     }
 
-    @GetMapping("register")
+    @PostMapping("register/form")
+    public String registerPost(BoardValidationForm form, Model model) {
+        model.addAttribute("board", form);
+        return "it-bulletin-board-register";
+    }
+
+    @GetMapping("register/form")
     public String register(BoardValidationForm form, Model model) {
         model.addAttribute("board",new BoardValidationForm());
         return "it-bulletin-board-register";
@@ -47,7 +53,7 @@ public class ITBoardController {
     @RequestMapping(value = "register", method = RequestMethod.POST, consumes = MediaType.APPLICATION_FORM_URLENCODED_VALUE)
     public String register(@Validated BoardValidationForm form, BindingResult bindingResult, @RequestParam HashMap<String, String> formData, Model model) {
         if (bindingResult.hasErrors()) {
-            return "/it/board/main/register";
+            return "/it/board/main/register/form";
         }
         Board board = boardService.saveBoard(Board.builder()
                 .boardName(formData.get("boardNameInput"))
