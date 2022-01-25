@@ -4,34 +4,43 @@
         <div class="d-flex flex-column justify-content-center">
             <h1 class="display-4 font-italic">Create new board</h1>
             <hr>
-            <form action="/app/v1/it/board/main/register" method="POST" id="BoardValidationForm" name="BoardValidationForm">
-                <div class="shadow p-3 mb-3 bg-body rounded">
-                    <input type="text" class="form-control" id="boardNameInput" name="boardNameInput"
-                           placeholder="Board Name">
-                </div>
-                <div class="shadow p-3 mb-3 bg-body rounded">
-                    <input type="text" class="form-control" id="categoryInput" name="categoryInput" placeholder="it"
-                           value="it" readonly>
-                </div>
-                <div class="shadow p-3 mb-3 bg-body rounded">
-                    <select class="form-select" aria-label="Default select example" id="colorSelect" name="colorSelect" value="text-dark">
-                        <option value="text-dark">Color</option>
-                        <option class="bg-blue" value="text-blue">Blue</option>
-                        <option class="bg-indigo" value="text-indigo">Indigo</option>
-                        <option class="bg-pink" value="text-pink">Pink</option>
-                        <option class="bg-red" value="text-red">Red</option>
-                        <option class="bg-yellow" value="text-yellow">Yellow</option>
-                        <option class="bg-orange" value="text-orange">Orange</option>
-                        <option class="bg-teal" value="text-teal">Teal</option>
-                        <option class="bg-green" value="text-green">Green</option>
-                        <option class="bg-light-dark" value="text-light-dark">Light dark</option>
-                    </select>
-                </div>
-                <div class="shadow p-3 mb-3 bg-body rounded">
-                    <label for="contentArea" class="form-label">Details</label>
-                    <textarea class="form-control" id="detailsArea" name="detailsArea" rows="5"></textarea>
-                </div>
-                <input type="submit" class="btn btn-primary active" value="Create"/>
+            <form action="/app/v1/it/board/main/register" method="POST" id="BoardValidationForm"
+                  name="BoardValidationForm">
+                {{#boardValidationForm}}
+                    {{#boardValidationForm}}
+                        {{#errors}}
+                            {{.}}
+                        {{/errors}}
+                        <div class="shadow p-3 mb-3 bg-body rounded">
+                            <input type="text" class="form-control" id="boardNameInput" name="boardNameInput"
+                                   value="{{boardNameInput}}" placeholder="Board Name">
+                        </div>
+                        <div class="shadow p-3 mb-3 bg-body rounded">
+                            <input type="text" class="form-control" id="categoryInput" name="categoryInput"
+                                   placeholder="it" value="it" readonly>
+                        </div>
+                        <div class="shadow p-3 mb-3 bg-body rounded">
+                            <select class="form-select {{colorSelect}}" id="colorSelect" name="colorSelect" value="{{colorSelect}}">
+                                <option value="bg-dark">Color</option>
+                                <option class="bg-blue" value="bg-blue">Blue</option>
+                                <option class="bg-indigo" value="bg-indigo">Indigo</option>
+                                <option class="bg-pink" value="bg-pink">Pink</option>
+                                <option class="bg-red" value="bg-red">Red</option>
+                                <option class="bg-yellow" value="bg-yellow">Yellow</option>
+                                <option class="bg-orange" value="bg-orange">Orange</option>
+                                <option class="bg-teal" value="bg-teal">Teal</option>
+                                <option class="bg-green" value="bg-green">Green</option>
+                                <option class="bg-light-dark" value="bg-light-dark">Light dark</option>
+                            </select>
+                        </div>
+                        <div class="shadow p-3 mb-3 bg-body rounded">
+                            <label for="contentArea" class="form-label">Details</label>
+                            <textarea class="form-control" id="detailsArea" name="detailsArea"
+                                      rows="5">{{detailsArea}}</textarea>
+                        </div>
+                        <input type="submit" class="btn btn-primary active" value="Create"/>
+                    {{/boardValidationForm}}
+                {{/boardValidationForm}}
             </form>
         </div>
     </div>

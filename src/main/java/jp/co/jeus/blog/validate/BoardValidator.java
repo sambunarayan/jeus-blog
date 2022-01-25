@@ -25,6 +25,7 @@ public class BoardValidator implements Validator {
         } else {
             if (validationForm.getBoardNameInput().length() > 35) {
                 errors.rejectValue("boardNameInput","Too long length");
+                validationForm.setErrors(errors.getAllErrors());
             }
         }
     }

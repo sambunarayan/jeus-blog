@@ -40,26 +40,26 @@ public class ITBoardController {
 
     @PostMapping("register/form")
     public String registerPost(BoardValidationForm form, Model model) {
-        model.addAttribute("board", form);
+        model.addAttribute("boardValidationForm", form);
         return "it-bulletin-board-register";
     }
 
     @GetMapping("register/form")
     public String register(BoardValidationForm form, Model model) {
-        model.addAttribute("board",new BoardValidationForm());
         return "it-bulletin-board-register";
     }
 
     @RequestMapping(value = "register", method = RequestMethod.POST, consumes = MediaType.APPLICATION_FORM_URLENCODED_VALUE)
-    public String register(@Validated BoardValidationForm form, BindingResult bindingResult, @RequestParam HashMap<String, String> formData, Model model) {
-        if (bindingResult.hasErrors()) {
+    public String register(@Validated BoardValidationForm form, BindingResult bindingResult, Model model) {
+        if (bindingResult != null && bindingResult.hasErrors()) {
+            model.addAttribute("errors", bindingResult.getAllErrors());
             return "/it/board/main/register/form";
         }
         Board board = boardService.saveBoard(Board.builder()
-                .boardName(formData.get("boardNameInput"))
-                .category(formData.get("categoryInput"))
-                .color(formData.get("colorSelect"))
-                .description(formData.get("detailsArea"))
+                .boardName(form.getBoardNameInput())
+                .category(form.getCategoryInput())
+                .color(form.getColorSelect().replace("bg", "text"))
+                .description(form.getDetailsArea())
                 .build());
         return "redirect:/it/board/main/bulletin";
     }
