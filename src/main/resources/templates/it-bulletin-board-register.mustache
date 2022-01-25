@@ -4,13 +4,13 @@
         <div class="d-flex flex-column justify-content-center">
             <h1 class="display-4 font-italic">Create new board</h1>
             <hr>
+            {{#errors}}
+                <strong class="d-inline-block mb-2 text-red">{{.}}</strong>
+            {{/errors}}
             <form action="/app/v1/it/board/main/register" method="POST" id="BoardValidationForm"
                   name="BoardValidationForm">
                 {{#boardValidationForm}}
                     {{#boardValidationForm}}
-                        {{#errors}}
-                            {{.}}
-                        {{/errors}}
                         <div class="shadow p-3 mb-3 bg-body rounded">
                             <input type="text" class="form-control" id="boardNameInput" name="boardNameInput"
                                    value="{{boardNameInput}}" placeholder="Board Name">
