@@ -21,10 +21,10 @@ public class BoardValidator implements Validator {
         log.debug("::::::::::::::::: validate ::::::::::::::::");
         log.debug("validate ----->" + validationForm.getBoardNameInput());
         if (validationForm.getBoardNameInput() == null || validationForm.getBoardNameInput().isBlank()) {
-            errors.rejectValue("boardNameInput"," is empty");
+            errors.rejectValue("BoardNameInput"," is empty");
         } else {
             if (validationForm.getBoardNameInput().length() > 35) {
-                errors.rejectValue("boardNameInput"," is too long");
+                errors.rejectValue("BoardNameInput"," is too long");
             }
         }
     }
