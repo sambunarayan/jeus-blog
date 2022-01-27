@@ -27,5 +27,8 @@ public class BoardValidator implements Validator {
                 errors.rejectValue("BoardNameInput"," is too long");
             }
         }
+        if (validationForm.getDetailsArea() == null || validationForm.getDetailsArea().isBlank()) {
+            errors.rejectValue("DetailsArea"," is empty");
+        }
     }
 }

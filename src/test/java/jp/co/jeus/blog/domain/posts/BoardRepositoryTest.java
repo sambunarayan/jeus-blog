@@ -25,6 +25,7 @@ public class BoardRepositoryTest {
         Board board = Board.builder()
                 .boardName("test" + dateTime)
                 .category("it")
+                .color("text-dark")
                 .description("Kubernetes diary.")
                 .build();
         board = repository.save(board);
@@ -39,6 +40,7 @@ public class BoardRepositoryTest {
         assertThat(res.getId()).isEqualTo(board.getId());
         assertThat(res.getBoardName()).isEqualTo(board.getBoardName());
         assertThat(res.getCategory()).isEqualTo(board.getCategory());
+        assertThat(res.getColor()).isEqualTo(board.getColor());
         assertThat(res.getDescription()).isEqualTo(board.getDescription());
 
         repository.delete(board);

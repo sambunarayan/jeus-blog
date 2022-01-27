@@ -34,6 +34,7 @@ public class ITBulletinBoardServiceTest {
                 assertThat(dto.getId()).isEqualTo(board.getId());
                 assertThat(dto.getBoardName()).isEqualTo(board.getBoardName());
                 assertThat(dto.getCategory()).isEqualTo(board.getCategory());
+                assertThat(dto.getColor()).isEqualTo(board.getColor());
                 assertThat(dto.getDescription()).isEqualTo(board.getDescription());
                 break;
             }
@@ -52,6 +53,7 @@ public class ITBulletinBoardServiceTest {
         assertThat(target.getId()).isEqualTo(board.getId());
         assertThat(target.getBoardName()).isEqualTo(board.getBoardName());
         assertThat(target.getCategory()).isEqualTo(board.getCategory());
+        assertThat(target.getColor()).isEqualTo(board.getColor());
         assertThat(target.getDescription()).isEqualTo(board.getDescription());
 
         service.deleteBoard(board);
@@ -75,6 +77,7 @@ public class ITBulletinBoardServiceTest {
         return Board.builder()
                 .boardName("test" + dateTime)
                 .category("it")
+                .color("text-dark")
                 .description("Kubernetes diary.")
                 .build();
     }

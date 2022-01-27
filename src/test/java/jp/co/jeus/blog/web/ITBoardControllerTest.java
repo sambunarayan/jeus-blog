@@ -32,7 +32,7 @@ public class ITBoardControllerTest {
         assertThat(list.size()).isGreaterThan(0);
     }
 
-    @Test
+//    @Test
     public void register() throws Exception {
         mvc.perform(get("/it/board/main/register"))
                 .andExpect(status().isOk())

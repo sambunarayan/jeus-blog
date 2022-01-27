@@ -45,3 +45,26 @@ dependencies {
 test {
     useJUnitPlatform()
 }
+
+def defaultEncoding = 'UTF-8'
+tasks.withType(AbstractCompile)*.options*.encoding = defaultEncoding
+tasks.withType(GroovyCompile)*.groovyOptions*.encoding = defaultEncoding
+
+javadoc {
+    options.charSet = 'UTF-8'
+    options.encoding = 'UTF-8'
+}
+
+task copyConfig(type:Copy, description: 'Copy files for each environment') {
+    if (project.hasProperty('env')) {
+        from "src/main/resources/env/${env}"
+        into "src/main/resources"
+    } else {
+        println "use default environment"
+    }
+}
+
+bootJar {
+    baseName = 'jeus-blog'
+    version =  '1.0.0'
+}
