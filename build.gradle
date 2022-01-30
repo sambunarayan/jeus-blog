@@ -59,16 +59,21 @@ defaultTasks 'copyEnvironmentConfig', 'build'
 tasks.withType(JavaCompile) {
     options.encoding = 'UTF-8'
 }
+
+// resources copy task
 task copyEnvironmentConfig(type: Copy) {
     if (project.hasProperty('env')) {
         println "use ${env} environment"
-        from "build/resources/main/env/${env}"
+        from "src/main/resources/env/${env}"
         into "build/resources/main"
+        duplicatesStrategy 'include'
     } else {
         println "use default environment"
-        from "build/resources/main/env/local"
+        from "src/main/resources/env/local"
         into "build/resources/main"
+        duplicatesStrategy 'include'
     }
 }
-
+// Build order [ copyEnvironmentConfig -> compileJava, processResources]
+[compileJava, processResources]*.mustRunAfter(copyEnvironmentConfig)
 jar.dependsOn copyEnvironmentConfig
