@@ -1,5 +1,6 @@
 package jp.co.jeus.blog.config.processor;
 
+import jp.co.jeus.blog.properties.FilePathProperty;
 import lombok.extern.log4j.Log4j2;
 import org.springframework.beans.BeansException;
 import org.springframework.beans.factory.config.BeanPostProcessor;
@@ -21,6 +22,9 @@ public class AuditCheckBeanPostProcessor implements BeanPostProcessor {
     @Override
     public Object postProcessAfterInitialization(Object bean, String beanName) throws BeansException {
         if (bean instanceof JpaRepository) {
+            log.debug("In AuditCheckBeanPostProcessor.postProcessAfterInitialization," + "processing bean type:" + bean.getClass());
+        }
+        if (bean instanceof FilePathProperty) {
             log.debug("In AuditCheckBeanPostProcessor.postProcessAfterInitialization," + "processing bean type:" + bean.getClass());
         }
         return bean;
