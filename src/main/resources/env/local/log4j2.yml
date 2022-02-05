@@ -16,12 +16,13 @@ Configutation:
     File:
       name: File_Appender
       fileName: ${log-path}/logfile.log
+      filePattern: "${log-path}/logfile-%d{yyyy-MM-dd-hh-mm}.log"
       PatternLayout:
         pattern: "[%-5level] %d{yyyy-MM-dd HH:mm:ss.SSS} [%t] %c{1} - %msg%n"
     RollingFile:
       - name: RollingFile_Appender
         fileName: ${log-path}/rollingfile.log
-        filePattern: "logs/archive/rollingfile.log.%d{yyyy-MM-dd-hh-mm}.gz"
+        filePattern: "logs/archive/rollingfile.log.%d{yyyy-MM-dd}.gz"
         PatternLayout:
           pattern: "[%-5level] %d{yyyy-MM-dd HH:mm:ss.SSS} [%t] %c{1} - %msg%n"
         TimeBasedTriggeringPolicy:
@@ -43,4 +44,4 @@ Configutation:
         AppenderRef:
           - ref: Console_Appender
           - ref: File_Appender
-          - ref: RollingFile_Appender
+          - ref:
