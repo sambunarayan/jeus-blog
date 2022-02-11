@@ -20,9 +20,6 @@
                                    placeholder="it" value="it" readonly>
                         </div>
                         <div class="shadow p-3 mb-3 bg-body rounded">
-                            <input type="file" id="uploadFile" name="uploadFile" multiple>
-                        </div>
-                        <div class="shadow p-3 mb-3 bg-body rounded">
                             <select class="form-select {{colorSelect}}" id="colorSelect" name="colorSelect"
                                     value="{{colorSelect}}">
                                 <option value="bg-dark">Color</option>
@@ -36,6 +33,10 @@
                                 <option class="bg-green" value="bg-green">Green</option>
                                 <option class="bg-light-dark" value="bg-light-dark">Light dark</option>
                             </select>
+                        </div>
+                        <div class="shadow p-3 mb-3 bg-body rounded">
+                            <label for="logo" class="form-label">Logo</label>
+                            <input class="form-control" type="file" id="logoFile" name="logoFile">
                         </div>
                         <div class="shadow p-3 mb-3 bg-body rounded">
                             <label for="contentArea" class="form-label">Details</label>

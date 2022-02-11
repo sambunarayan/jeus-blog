@@ -3,6 +3,7 @@ package jp.co.jeus.blog.web;
 import jp.co.jeus.blog.domain.posts.Board;
 import jp.co.jeus.blog.form.BoardValidationForm;
 import jp.co.jeus.blog.service.ITBulletinBoardService;
+import jp.co.jeus.blog.service.ImageUploadService;
 import jp.co.jeus.blog.validate.BoardValidator;
 import lombok.extern.log4j.Log4j2;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,6 +14,7 @@ import org.springframework.validation.BindingResult;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.WebDataBinder;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 import java.util.stream.Collectors;
 
 @Log4j2
@@ -22,6 +24,8 @@ public class ITBoardController {
 
     @Autowired
     private BoardValidator boardValidator;
+    @Autowired
+    private ImageUploadService imageUploadService;
     @Autowired
     private ITBulletinBoardService boardService;
 
@@ -44,16 +48,19 @@ public class ITBoardController {
 
     @RequestMapping(value = "register", method = RequestMethod.POST, consumes = MediaType.APPLICATION_FORM_URLENCODED_VALUE)
     public String register(@Validated BoardValidationForm form, BindingResult bindingResult, Model model) {
+//        log.debug("::::::::::::::: upload ----------> " + form.getLogoFile().getOriginalFilename());
         if (bindingResult != null && bindingResult.hasErrors()) {
             model.addAttribute("errors", bindingResult.getFieldErrors().stream()
                     .map(e -> e.getField() + e.getCode())
                     .collect(Collectors.toList()));
             return "it-bulletin-board-register";
         }
+        String logoName = imageUploadService.uploadLogImage(form.getLogoFile());
         Board board = boardService.saveBoard(Board.builder()
                 .boardName(form.getBoardNameInput())
                 .category(form.getCategoryInput())
                 .color(form.getColorSelect().replace("bg", "text"))
+                .logo(logoName)
                 .description(form.getDetailsArea())
                 .build());
         return "redirect:/it/board/main/bulletin";

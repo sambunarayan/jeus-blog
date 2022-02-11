@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.PropertySource;
 import org.springframework.http.HttpEntity;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -24,6 +25,8 @@ public class ImageController {
 
     @Value("${image.filepath:}")
     private String imageFilePath;
+    @Value("${logo.image.filepath:}")
+    private String logoPath;
     @Autowired
     private FilePathProperty filePathProperty;
 
@@ -31,6 +34,20 @@ public class ImageController {
     @ResponseBody
     public HttpEntity<byte[]> getImage(@RequestParam("name") String fileName) {
         File file = new File(Paths.get(imageFilePath, fileName + ".png").toString());
+        log.debug(file.toPath().toUri());
+        byte[] imageByte = null;
+        try {
+            imageByte = Files.readAllBytes(file.toPath());
+        } catch (IOException e) {
+            return null;
+        }
+        return new HttpEntity<byte[]>(imageByte);
+    }
+
+    @RequestMapping("logo/{logo}")
+    @ResponseBody
+    public HttpEntity<byte[]> getLogo(@PathVariable("logo") String logo) {
+        File file = new File(Paths.get(logoPath, logo).toString());
         log.debug(file.toPath().toUri());
         byte[] imageByte = null;
         try {

@@ -20,13 +20,15 @@ public class Board extends BaseTimeEntity {
     private String category;
     @NonNull
     private String color;
+    private String logo;
     private String description;
 
     @Builder
-    public Board(String boardName, String category, String color, String description) {
+    public Board(String boardName, String category, String color, String logo, String description) {
         this.boardName = boardName;
         this.category = category;
         this.color = color;
+        this.logo = logo;
         this.description = description;
     }
 }

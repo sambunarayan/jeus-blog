@@ -11,6 +11,7 @@ public class BoardResponseDto {
     private String boardName;
     private String category;
     private String color;
+    private String logo;
     private String description;
     private LocalDateTime createdDate;
     private LocalDateTime modifiedDate;
@@ -20,6 +21,7 @@ public class BoardResponseDto {
         this.boardName = board.getBoardName();
         this.category = board.getCategory();
         this.color = board.getColor();
+        this.logo = board.getLogo();
         this.description = board.getDescription();
         this.createdDate = board.getCreatedDate();
         this.modifiedDate = board.getModifiedDate();
