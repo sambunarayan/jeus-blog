@@ -7,7 +7,7 @@
             {{#errors}}
                 <strong class="d-inline-block mb-2 text-red">{{.}}</strong>
             {{/errors}}
-            <form action="/app/v1/it/board/main/register" method="POST" id="BoardValidationForm"
+            <form action="/app/v1/it/board/main/register" method="POST" id="BoardValidationForm" enctype="multipart/form-data"
                   name="BoardValidationForm">
                 {{#boardValidationForm}}
                     {{#boardValidationForm}}
@@ -36,7 +36,7 @@
                         </div>
                         <div class="shadow p-3 mb-3 bg-body rounded">
                             <label for="logo" class="form-label">Logo</label>
-                            <input class="form-control" type="file" id="logoFile" name="logoFile">
+                            <input class="form-control" type="file" id="logoFile" name="logoFile" multiple>
                         </div>
                         <div class="shadow p-3 mb-3 bg-body rounded">
                             <label for="contentArea" class="form-label">Details</label>

@@ -14,6 +14,8 @@ import org.springframework.validation.BindingResult;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.WebDataBinder;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
+
 import java.util.stream.Collectors;
 
 @Log4j2
@@ -45,8 +47,8 @@ public class ITBoardController {
         return "it-bulletin-board-register";
     }
 
-    @RequestMapping(value = "register", method = RequestMethod.POST, consumes = MediaType.APPLICATION_FORM_URLENCODED_VALUE)
-    public String register(@Validated BoardValidationForm form, BindingResult bindingResult, Model model) {
+    @RequestMapping(value = "register", method = RequestMethod.POST)
+    public String register(@RequestPart("logoFile") MultipartFile multipartFile, @Validated BoardValidationForm form, BindingResult bindingResult, Model model) {
 //        log.debug("::::::::::::::: upload ----------> " + form.getLogoFile().getOriginalFilename());
         if (bindingResult != null && bindingResult.hasErrors()) {
             model.addAttribute("errors", bindingResult.getFieldErrors().stream()
@@ -54,7 +56,7 @@ public class ITBoardController {
                     .collect(Collectors.toList()));
             return "it-bulletin-board-register";
         }
-        String logoName = imageUploadService.uploadLogImage(form.getLogoFile());
+        String logoName = imageUploadService.uploadLogImage(multipartFile);
         Board board = boardService.saveBoard(Board.builder()
                 .boardName(form.getBoardNameInput())
                 .category(form.getCategoryInput())
