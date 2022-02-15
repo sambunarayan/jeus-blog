@@ -7,7 +7,6 @@ import jp.co.jeus.blog.service.ImageUploadService;
 import jp.co.jeus.blog.validate.BoardValidator;
 import lombok.extern.log4j.Log4j2;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.MediaType;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -49,7 +48,6 @@ public class ITBoardController {
 
     @RequestMapping(value = "register", method = RequestMethod.POST)
     public String register(@RequestPart("logoFile") MultipartFile multipartFile, @Validated BoardValidationForm form, BindingResult bindingResult, Model model) {
-//        log.debug("::::::::::::::: upload ----------> " + form.getLogoFile().getOriginalFilename());
         if (bindingResult != null && bindingResult.hasErrors()) {
             model.addAttribute("errors", bindingResult.getFieldErrors().stream()
                     .map(e -> e.getField() + e.getCode())
