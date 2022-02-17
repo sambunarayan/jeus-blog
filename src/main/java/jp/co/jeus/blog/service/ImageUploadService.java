@@ -18,10 +18,12 @@ public class ImageUploadService {
 
     @Value("${logo.image.filepath:}")
     private String logoPath;
+    @Value("${logo.image.default}")
+    private String defaultLogoImageName;
 
     public String uploadLogImage(MultipartFile logoFile) {
         if (logoFile == null) {
-            return "";
+            return defaultLogoImageName;
         }
         UUID logoFileName = UUID.randomUUID();
         log.debug("Logo original file name : " + logoFile.getOriginalFilename());
