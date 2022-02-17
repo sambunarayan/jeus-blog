@@ -8,13 +8,13 @@ import jp.co.jeus.blog.validate.BoardValidator;
 import lombok.extern.log4j.Log4j2;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.WebDataBinder;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
-
 import java.util.stream.Collectors;
 
 @Log4j2
@@ -46,6 +46,7 @@ public class ITBoardController {
         return "it-bulletin-board-register";
     }
 
+    @Transactional
     @RequestMapping(value = "register", method = RequestMethod.POST)
     public String register(@RequestPart("logoFile") MultipartFile multipartFile, @Validated BoardValidationForm form, BindingResult bindingResult, Model model) {
         if (bindingResult != null && bindingResult.hasErrors()) {

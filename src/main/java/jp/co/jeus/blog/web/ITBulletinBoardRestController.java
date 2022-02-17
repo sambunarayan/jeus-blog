@@ -5,6 +5,7 @@ import jp.co.jeus.blog.web.dto.PostPageDto;
 import jp.co.jeus.blog.web.dto.PostResponseDto;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -32,6 +33,7 @@ public class ITBulletinBoardRestController {
         return service.findWithPaging(boardName.toLowerCase(), page);
     }
 
+    @Transactional
     @DeleteMapping("/delete/post/{id}")
     public Long deletePost(@PathVariable("id") Long id) {
         service.deletePost(id);
