@@ -32,7 +32,6 @@ public class ImageUploadService {
 
         File saveFile = new File(logoPath, logoFileName.toString());
         try (FileOutputStream thumbnail = new FileOutputStream(saveFile);) {
-//            logoFiles.transferTo(saveFile);
             Thumbnailator.createThumbnail(logoFile.getInputStream(), thumbnail, 250, 250);
         } catch (Exception e) {
             log.error(e.getMessage());

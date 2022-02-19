@@ -24,7 +24,7 @@ public class ImageLoadService {
 
     public HttpEntity<byte[]> getImage(String fileName) {
         try {
-            File file = new File(Paths.get(imageFilePath, fileName + ".png").toString());
+            File file = new File(Paths.get(imageFilePath, fileName).toString());
             log.debug(file.toPath().toUri());
             return new HttpEntity<byte[]>(Files.readAllBytes(file.toPath()));
         } catch (IOException e) {
