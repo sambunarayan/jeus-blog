@@ -1,6 +1,6 @@
 package jp.co.jeus.blog.domain.posts;
 
-import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -17,7 +17,32 @@ import static org.assertj.core.api.Assertions.assertThat;
 public class PostRepositoryTest {
 
     @Autowired
+    private BoardRepository boardRepository;
+    @Autowired
     private PostRepository repository;
+
+    private static Board board;
+
+    @BeforeAll
+    public static void beforeAll() {
+        board = Board.builder()
+                .boardName("UnitTest")
+                .category("it")
+                .logo("logo")
+                .color("black")
+                .description("JUnit Test board")
+                .build();
+    }
+
+    @BeforeEach
+    public void setup() {
+        boardRepository.save(board);
+    }
+
+    @AfterEach
+    public void afterEach() {
+        boardRepository.delete(board);
+    }
 
     @Test
     public void saveAndDelete() {
@@ -75,7 +100,7 @@ public class PostRepositoryTest {
         DateTimeFormatter fmt = DateTimeFormatter.ofPattern("yyyyMMddHHmmssSSS");
         String dateTime = fmt.format(LocalDateTime.now());
         return Post.builder()
-                .boardName("Test")
+                .boardName(board.getBoardName())
                 .title("Test title " + dateTime)
                 .content("Test content " + dateTime)
                 .author("Test Author")
