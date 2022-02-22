@@ -21,10 +21,10 @@ public class PostRepositoryTest {
     @Autowired
     private PostRepository repository;
 
-    private static Board board;
+    private Board board;
 
-    @BeforeAll
-    public static void beforeAll() {
+    @BeforeEach
+    public void setup() {
         board = Board.builder()
                 .boardName("UnitTest")
                 .category("it")
@@ -32,10 +32,6 @@ public class PostRepositoryTest {
                 .color("black")
                 .description("JUnit Test board")
                 .build();
-    }
-
-    @BeforeEach
-    public void setup() {
         boardRepository.save(board);
     }
 
@@ -80,7 +76,7 @@ public class PostRepositoryTest {
         assertThat(list.get(1).getContent()).isEqualTo(post1.getContent());
         assertThat(list.get(1).getAuthor()).isEqualTo(post1.getAuthor());
 
-        list = repository.findByBoardNameDesc("Test");
+        list = repository.findByBoardNameDesc(board.getBoardName());
         assertThat(list.get(0).getId()).isEqualTo(post2.getId());
         assertThat(list.get(0).getBoardName()).isEqualTo(post2.getBoardName());
         assertThat(list.get(0).getTitle()).isEqualTo(post2.getTitle());

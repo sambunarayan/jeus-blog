@@ -1,25 +1,46 @@
 package jp.co.jeus.blog.service;
 
+import jp.co.jeus.blog.domain.posts.Board;
+import jp.co.jeus.blog.domain.posts.BoardRepository;
 import jp.co.jeus.blog.domain.posts.Post;
 import jp.co.jeus.blog.web.dto.PostResponseDto;
+import org.junit.jupiter.api.AfterEach;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
 import org.springframework.boot.test.context.SpringBootTest;
-
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.List;
-
 import static org.assertj.core.api.Assertions.assertThat;
-import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 @SpringBootTest
 @AutoConfigureMockMvc
 public class ITBulletinPostServiceTest {
 
     @Autowired
+    private BoardRepository boardRepository;
+    @Autowired
     private ITBulletinPostService service;
+    private Board board;
+
+    @BeforeEach
+    public void setup() {
+        board = Board.builder()
+                .boardName("UnitTest")
+                .category("it")
+                .logo("logo")
+                .color("black")
+                .description("JUnit Test board")
+                .build();
+        boardRepository.save(board);
+    }
+
+    @AfterEach
+    public void afterEach() {
+        boardRepository.delete(board);
+    }
 
     @Test
     public void savePost() {
@@ -51,7 +72,7 @@ public class ITBulletinPostServiceTest {
         DateTimeFormatter fmt = DateTimeFormatter.ofPattern("yyyyMMddHHmmssSSS");
         String dateTime = fmt.format(LocalDateTime.now());
         return Post.builder()
-                .boardName("Test")
+                .boardName(board.getBoardName())
                 .title("Test title " + dateTime)
                 .content("Test content " + dateTime)
                 .author("Test Author")
