@@ -63,20 +63,19 @@ public class ITBulletinPostController {
         }
         PostResponseDto post = null;
         String currPage = "&page=";
-        String content = RequestBodyConvertUtility.convertSpaceNBlank(formData.get("content"));
         if (formData.containsKey("id")) {
             currPage += formData.get("current_page");
             post = postService.update(PostSaveRequestDto.builder()
                     .id(Long.parseLong(formData.get("id")))
                     .title(formData.get("title"))
-                    .content(content)
+                    .content(formData.get("content"))
                     .build());
         } else {
             currPage += "1";
             post = postService.savePost(Post.builder()
                     .boardName(formData.get("boardName"))
                     .title(formData.get("title"))
-                    .content(content)
+                    .content(formData.get("content"))
                     .author("Guest")
                     .build());
         }

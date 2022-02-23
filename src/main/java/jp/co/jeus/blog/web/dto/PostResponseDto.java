@@ -26,6 +26,16 @@ public class PostResponseDto {
         this.modifiedDate = post.getModifiedDate();
     }
 
+    public PostResponseDto(Post post, Long id, String content) {
+        this.id = id;
+        this.boardName = post.getBoardName();
+        this.title = post.getTitle();
+        this.content = content;
+        this.author = post.getAuthor();
+        this.createdDate = post.getCreatedDate();
+        this.modifiedDate = post.getModifiedDate();
+    }
+
     public PostResponseDto(Post post, String boardNameColor) {
         this.id = post.getId();
         this.boardNameColor = boardNameColor;
