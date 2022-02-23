@@ -2,7 +2,6 @@ package jp.co.jeus.blog.web;
 
 import jp.co.jeus.blog.domain.posts.Post;
 import jp.co.jeus.blog.service.ITBulletinPostService;
-import jp.co.jeus.blog.utils.RequestBodyConvertUtility;
 import jp.co.jeus.blog.web.dto.CurrentPostResponseDto;
 import jp.co.jeus.blog.web.dto.PostResponseDto;
 import jp.co.jeus.blog.web.dto.PostSaveRequestDto;

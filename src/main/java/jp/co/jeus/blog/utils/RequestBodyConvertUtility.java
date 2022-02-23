@@ -8,6 +8,6 @@ public class RequestBodyConvertUtility {
 
     public static String convertSpaceNBlank(String content) {
         return content.replaceAll(System.lineSeparator(), "<br>")
-                .replaceAll(" ","&nbps;");
+                .replaceAll(" ","&nbsp;");
     }
 }
