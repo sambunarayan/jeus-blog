@@ -14,7 +14,7 @@
                     <div class="col p-4 d-flex flex-column position-static">
                         <strong class="d-inline-block mb-2 {{color}}">{{boardName}}</strong>
                         <h3 class="mb-0">{{boardName}} post</h3>
-                        <div class="mb-1 text-muted">Nov 12</div>
+                        <div class="mb-1 text-muted">{{createdDate}}</div>
                         <p class="card-text mb-auto">{{description}}</p>
                         <a href="/app/v1/it/board/post/list/{{boardName}}" class="stretched-link">Continue reading</a>
                     </div>
@@ -22,7 +22,7 @@
                         <svg class="bd-placeholder-img" width="50" height="100" xmlns="http://www.w3.org/2000/svg"
                              role="img" aria-label="Placeholder: Thumbnail" preserveAspectRatio="xMidYMid slice"
                              focusable="false">
-                            <img class="img-thumbnail" src="/app/v1/image/logo/{{logo}}">
+                            <img class="img-thumbnail border-0 position-absolute top-50 end-0 translate-middle-y" src="/app/v1/image/logo/{{logo}}">
                         </svg>
                     </div>
                 </div>
