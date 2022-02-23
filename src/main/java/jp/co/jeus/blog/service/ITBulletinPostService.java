@@ -94,7 +94,8 @@ public class ITBulletinPostService {
     @Transactional
     public PostResponseDto findById(Long id) {
         Post post = repository.findById(id).orElseThrow(() -> new IllegalArgumentException("No result record. id = " + id));
-        return new PostResponseDto(post, post.getId(), RequestBodyConvertUtility.convertSpaceNBlank(post.getContent()));
+//        return new PostResponseDto(post, post.getId(), RequestBodyConvertUtility.convertSpaceNBlank(post.getContent()));
+        return new PostResponseDto(post);
     }
 
     /**
