@@ -4,7 +4,25 @@ $(document).ready(function(){
     function refreshPost() {
         var content = document.getElementById("content");
         if (content != null) {
-            $("#content").html(content.textContent);
+            var convert = "";
+            var text = content.textContent;
+            var f = false;
+            for (var i = 0; i < text.length; i++) {
+                if (!f && text[i] == ' ') {
+                    convert += '&nbsp;';
+                } else {
+                    if (text[i] == '<') {
+                        f = true;
+                    } else if (text[i] == '>') {
+                        f = false;
+                    }
+                    convert += text[i];
+                }
+            }
+//            console.log("before : " + text);
+//            console.log("after : " + convert);
+//            $("#content").html(text);
+            $("#content").html(convert);
         }
     }
     function list() {

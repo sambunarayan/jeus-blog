@@ -13,10 +13,7 @@
                         <hr>
                         <h2 class="blog-post-title" id="post-title">{{title}}</h2>
                         <p class="blog-post-meta">{{createdDate}} by {{author}}</p>
-                        <div id="content">
-                            {{#content}}
-                                {{.}}<br>
-                            {{/content}}
+                        <div id="content">{{#content}}{{.}}<br>{{/content}}
                         </div>
                     </article>
                     <input type="submit" class="btn btn-primary active" value="Edit"/>
