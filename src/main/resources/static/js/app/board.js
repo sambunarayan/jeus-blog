@@ -4,25 +4,22 @@ $(document).ready(function(){
     function refreshPost() {
         var content = document.getElementById("content");
         if (content != null) {
-            var convert = "";
-            var text = content.textContent;
-            var f = false;
+            var converted = "";
+            var text = content.textContent.replaceAll(/\r?\n/g,'<br>');
+            var inHtmlTag = false;
             for (var i = 0; i < text.length; i++) {
-                if (!f && text[i] == ' ') {
-                    convert += '&nbsp;';
+                if (!inHtmlTag && text[i] == ' ') {
+                    converted += '&nbsp;';
                 } else {
                     if (text[i] == '<') {
-                        f = true;
+                        inHtmlTag = true;
                     } else if (text[i] == '>') {
-                        f = false;
+                        inHtmlTag = false;
                     }
-                    convert += text[i];
+                    converted += text[i];
                 }
             }
-//            console.log("before : " + text);
-//            console.log("after : " + convert);
-//            $("#content").html(text);
-            $("#content").html(convert);
+            $("#content").html(converted);
         }
     }
     function list() {

@@ -9,7 +9,7 @@ import java.util.List;
 public class CurrentPostResponseDto {
     private Long id;
     private String title;
-    private List<String> content;
+    private String content;
     private String author;
     private LocalDateTime createdDate;
     private LocalDateTime modifiedDate;
@@ -17,7 +17,7 @@ public class CurrentPostResponseDto {
     public CurrentPostResponseDto(PostResponseDto resDto) {
         this.id = resDto.getId();
         this.title = resDto.getTitle();
-        this.content = List.of(resDto.getContent().split(System.lineSeparator()));
+        this.content = resDto.getContent();
         this.author = resDto.getAuthor();
         this.createdDate = resDto.getCreatedDate();
         this.modifiedDate = resDto.getModifiedDate();
