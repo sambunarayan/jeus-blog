@@ -3,7 +3,6 @@ package jp.co.jeus.blog.service;
 import jp.co.jeus.blog.domain.posts.BoardRepository;
 import jp.co.jeus.blog.domain.posts.PostRepository;
 import jp.co.jeus.blog.domain.posts.Post;
-import jp.co.jeus.blog.utils.RequestBodyConvertUtility;
 import jp.co.jeus.blog.web.dto.PostPageDto;
 import jp.co.jeus.blog.web.dto.PostResponseDto;
 import jp.co.jeus.blog.web.dto.PostSaveRequestDto;
@@ -94,7 +93,6 @@ public class ITBulletinPostService {
     @Transactional
     public PostResponseDto findById(Long id) {
         Post post = repository.findById(id).orElseThrow(() -> new IllegalArgumentException("No result record. id = " + id));
-//        return new PostResponseDto(post, post.getId(), RequestBodyConvertUtility.convertSpaceNBlank(post.getContent()));
         return new PostResponseDto(post);
     }
 
