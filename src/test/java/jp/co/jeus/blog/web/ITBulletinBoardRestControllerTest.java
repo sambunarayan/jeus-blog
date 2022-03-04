@@ -16,6 +16,7 @@ import java.time.ZoneId;
 import java.util.ArrayList;
 import java.util.List;
 
+import static org.assertj.core.api.Assertions.assertThat;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
 
@@ -41,6 +42,18 @@ public class ITBulletinBoardRestControllerTest {
             }
         }).create();
         List<PostResponseDto> resList = gson.fromJson(result, new TypeToken<ArrayList<PostResponseDto>>(){}.getType());
-        resList.forEach(System.out::println);
+        assertThat(resList.size()).isGreaterThan(0);
+    }
+
+    @Test
+    public void getK8sPostingList() throws Exception {
+        mvc.perform(get("/it/board/post/Kubernetes/1"))
+                .andExpect(status().isOk());
+    }
+
+    @Test
+    public void getPostPage() throws Exception {
+        mvc.perform(get("/it/board/post/Kubernetes/page/1"))
+                .andExpect(status().isOk());
     }
 }
