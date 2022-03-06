@@ -25,7 +25,6 @@ public class ImageController {
     @RequestMapping("load")
     @ResponseBody
     public ListenableFuture<HttpEntity<byte[]>> getImage(@RequestParam("name") String fileName) {
-        log.debug("Test");
         return taskExecutor.submitListenable(() -> imageLoadService.getImage(fileName));
     }
 

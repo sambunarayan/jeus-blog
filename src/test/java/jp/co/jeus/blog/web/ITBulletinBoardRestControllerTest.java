@@ -17,7 +17,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import static org.assertj.core.api.Assertions.assertThat;
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
 
 @SpringBootTest
@@ -54,6 +54,13 @@ public class ITBulletinBoardRestControllerTest {
     @Test
     public void getPostPage() throws Exception {
         mvc.perform(get("/it/board/post/Kubernetes/page/1"))
+                .andExpect(status().isOk());
+    }
+
+    @Test
+    public void deletePost() throws Exception {
+        long id = -1;
+        mvc.perform(delete("/it/board/post/delete/post/" + id))
                 .andExpect(status().isOk());
     }
 }
