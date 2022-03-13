@@ -13,9 +13,9 @@ public class ImageUploadServiceTest {
     @Autowired
     private ImageUploadService service;
 
-//    @Test
-    private void uploadLogImage() {
+    @Test
+    public void uploadLogImage() {
         String logoImageName = service.uploadLogImage(null);
-        assertThat(logoImageName).isNull();
+        assertThat(logoImageName).isEqualTo("default");
     }
 }
