@@ -16,6 +16,10 @@ import org.springframework.web.bind.annotation.GetMapping;
 @Controller
 public class MainPageController {
 
+    @Value("${main.title.message}")
+    private String mainTitle;
+    @Value("${main.title.detail.message}")
+    private String mainTitleDetail;
     @Value("${profil.aboutme}")
     private String aboutMe;
     @Autowired
@@ -25,6 +29,8 @@ public class MainPageController {
     public String index(Model model) {
         model.addAttribute("LastIndexId", Integer.MAX_VALUE);
         model.addAttribute("aboutMe", aboutMe);
+        model.addAttribute("mainTitle", mainTitle);
+        model.addAttribute("mainTitleDetail", mainTitleDetail);
         return "index";
     }
 }
