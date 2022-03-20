@@ -11,6 +11,9 @@ import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 
+/**
+ * Image load service
+ */
 @Log4j2
 @Service
 @PropertySource("classpath:filepath.property")
@@ -21,6 +24,12 @@ public class ImageLoadService {
     @Value("${logo.image.filepath:}")
     private String logoPath;
 
+    /**
+     * Load an image
+     *
+     * @param fileName The file name of the image.
+     * @return HttpEntity
+     */
     public HttpEntity<byte[]> getImage(String fileName) {
         try {
             File file = new File(Paths.get(imageFilePath, fileName).toString());
@@ -31,6 +40,12 @@ public class ImageLoadService {
         }
     }
 
+    /**
+     * Load an logo image
+     *
+     * @param logo logo file name
+     * @return HttpEntity
+     */
     public HttpEntity<byte[]> getLogo(String logo) {
         try {
             File file = new File(Paths.get(logoPath, logo).toString());
