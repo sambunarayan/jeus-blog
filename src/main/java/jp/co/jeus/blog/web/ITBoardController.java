@@ -41,11 +41,27 @@ public class ITBoardController {
         return "it-bulletin";
     }
 
+    /**
+     * Returns the view name of the board registration page along with the validator form.
+     *
+     * @param form Validate Form
+     * @param model Model
+     * @return
+     */
     @GetMapping("register/form")
     public String register(BoardValidationForm form, Model model) {
         return "it-bulletin-board-register";
     }
 
+    /**
+     * Execute board registration.
+     *
+     * @param multipartFile
+     * @param form
+     * @param bindingResult
+     * @param model
+     * @return
+     */
     @Transactional
     @RequestMapping(value = "register", method = RequestMethod.POST)
     public String register(@RequestPart("logoFile") MultipartFile multipartFile, @Validated BoardValidationForm form, BindingResult bindingResult, Model model) {

@@ -25,6 +25,12 @@ public class MainPageController {
     @Autowired
     private ITBulletinPostService service;
 
+    /**
+     * Returns the view name of the main page.
+     *
+     * @param model
+     * @return view name
+     */
     @GetMapping
     public String index(Model model) {
         model.addAttribute("LastIndexId", Integer.MAX_VALUE);
