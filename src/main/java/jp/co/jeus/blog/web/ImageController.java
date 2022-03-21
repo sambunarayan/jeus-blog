@@ -22,12 +22,26 @@ public class ImageController {
     @Autowired
     private AsyncListenableTaskExecutor taskExecutor;
 
+    /**
+     * Load an image<br>
+     * Processes image loading asynchronously.<br>
+     *
+     * @param fileName
+     * @return
+     */
     @RequestMapping("load")
     @ResponseBody
     public ListenableFuture<HttpEntity<byte[]>> getImage(@RequestParam("name") String fileName) {
         return taskExecutor.submitListenable(() -> imageLoadService.getImage(fileName));
     }
 
+    /**
+     * Load logo image<br>
+     * Processes image loading asynchronously.<br>
+     *
+     * @param logo
+     * @return
+     */
     @RequestMapping("logo/{logo}")
     @ResponseBody
     public ListenableFuture<HttpEntity<byte[]>> getLogo(@PathVariable("logo") final String logo) {
