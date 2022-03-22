@@ -29,11 +29,22 @@ public class ITBoardController {
     @Autowired
     private ITBulletinBoardService boardService;
 
+    /**
+     * Validator registration
+     *
+     * @param binder
+     */
     @InitBinder
     public void validatorBinder(WebDataBinder binder) {
         binder.addValidators(boardValidator);
     }
 
+    /**
+     * Returns the view name of the board main page.
+     *
+     * @param model
+     * @return the view name of the board main page
+     */
     @GetMapping("bulletin")
     public String board(Model model) {
         log.debug("X-Tracking-Id --> " + model.getAttribute("trackingId"));
@@ -46,7 +57,7 @@ public class ITBoardController {
      *
      * @param form Validate Form
      * @param model Model
-     * @return
+     * @return the view name of the board registration page
      */
     @GetMapping("register/form")
     public String register(BoardValidationForm form, Model model) {
@@ -60,7 +71,7 @@ public class ITBoardController {
      * @param form
      * @param bindingResult
      * @param model
-     * @return
+     * @return Redirect board main page
      */
     @Transactional
     @RequestMapping(value = "register", method = RequestMethod.POST)
