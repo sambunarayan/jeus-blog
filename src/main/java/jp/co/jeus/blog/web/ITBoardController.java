@@ -82,7 +82,7 @@ public class ITBoardController {
                     .collect(Collectors.toList()));
             return "it-bulletin-board-register";
         }
-        String logoName = imageUploadService.uploadLogImage(multipartFile);
+        String logoName = imageUploadService.uploadLogoImage(multipartFile);
         Board board = boardService.saveBoard(Board.builder()
                 .boardName(form.getBoardNameInput())
                 .category(form.getCategoryInput())

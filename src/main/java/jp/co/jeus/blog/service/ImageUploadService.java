@@ -11,6 +11,9 @@ import java.io.File;
 import java.io.FileOutputStream;
 import java.util.UUID;
 
+/**
+ * Image upload service
+ */
 @Log4j2
 @PropertySource("classpath:filepath.property")
 @Service
@@ -21,7 +24,13 @@ public class ImageUploadService {
     @Value("${logo.image.default}")
     private String defaultLogoImageName;
 
-    public String uploadLogImage(MultipartFile logoFile) {
+    /**
+     * Upload logoImage
+     *
+     * @param logoFile
+     * @return
+     */
+    public String uploadLogoImage(MultipartFile logoFile) {
         if (logoFile == null) {
             return defaultLogoImageName;
         }

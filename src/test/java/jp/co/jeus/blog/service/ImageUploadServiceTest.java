@@ -15,7 +15,7 @@ public class ImageUploadServiceTest {
 
     @Test
     public void uploadLogImage() {
-        String logoImageName = service.uploadLogImage(null);
+        String logoImageName = service.uploadLogoImage(null);
         assertThat(logoImageName).isEqualTo("default");
     }
 }
