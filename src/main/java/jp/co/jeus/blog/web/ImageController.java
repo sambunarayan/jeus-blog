@@ -7,11 +7,11 @@ import org.springframework.core.task.AsyncListenableTaskExecutor;
 import org.springframework.http.HttpEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.util.concurrent.ListenableFuture;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.*;
 
+/**
+ * Image Controller
+ */
 @Log4j2
 @RequestMapping("image")
 @Controller
@@ -47,4 +47,5 @@ public class ImageController {
     public ListenableFuture<HttpEntity<byte[]>> getLogo(@PathVariable("logo") final String logo) {
         return taskExecutor.submitListenable(() -> imageLoadService.getLogo(logo));
     }
+
 }
