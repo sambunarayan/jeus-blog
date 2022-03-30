@@ -16,9 +16,11 @@ function onChange(evt) {
         timeout: 600000,
         data: data,
     }).done(function(data) {
-        console(data);
+        console.log("success");
+        console.log(data);
+        alert(data.imageName);
     }).fail(function (error) {
-        alert(error);
+        console.log(error);
     });
 }
 document.getElementById("uploadFile").addEventListener("change", onChange, false);
