@@ -16,11 +16,12 @@ function onChange(evt) {
         timeout: 600000,
         data: data,
     }).done(function(data) {
+        const content = document.getElementById('content');
         console.log("success");
         console.log(data);
-        alert(data.imageName);
+        content.value += "<img src='/app/v1/image/load?name=" + data.imageName +"'/>";
     }).fail(function (error) {
-        console.log(error);
+        alert(error);
     });
 }
 document.getElementById("uploadFile").addEventListener("change", onChange, false);
