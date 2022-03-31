@@ -19,6 +19,6 @@ public class ImageRestController {
     @ResponseBody
     public ImageResponseDto uploadImage(MultipartFile file) {
         log.debug(file.getOriginalFilename());
-        return new ImageResponseDto(imageUploadService.uploadLogoImage(file));
+        return new ImageResponseDto(imageUploadService.uploadImage(file));
     }
 }

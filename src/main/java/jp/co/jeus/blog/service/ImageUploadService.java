@@ -1,5 +1,6 @@
 package jp.co.jeus.blog.service;
 
+import jp.co.jeus.blog.constants.FileType;
 import lombok.extern.log4j.Log4j2;
 import net.coobird.thumbnailator.Thumbnailator;
 import org.springframework.beans.factory.annotation.Value;
@@ -9,6 +10,7 @@ import org.springframework.web.multipart.MultipartFile;
 
 import java.io.File;
 import java.io.FileOutputStream;
+import java.io.IOException;
 import java.util.UUID;
 
 /**
@@ -19,6 +21,8 @@ import java.util.UUID;
 @Service
 public class ImageUploadService {
 
+    @Value("${image.filepath:}")
+    private String imagePath;
     @Value("${logo.image.filepath:}")
     private String logoPath;
     @Value("${logo.image.default}")
@@ -34,17 +38,46 @@ public class ImageUploadService {
         if (logoFile == null) {
             return defaultLogoImageName;
         }
-        UUID logoFileName = UUID.randomUUID();
-        log.debug("Logo original file name : " + logoFile.getOriginalFilename());
-        log.debug("Logo fileSize : " + logoFile.getSize());
-        log.debug("New logo file name : " + logoFileName.toString());
+        return saveFile(logoFile, FileType.LOGO_IMAGE);
+    }
 
-        File saveFile = new File(logoPath, logoFileName.toString());
-        try (FileOutputStream thumbnail = new FileOutputStream(saveFile);) {
-            Thumbnailator.createThumbnail(logoFile.getInputStream(), thumbnail, 250, 250);
-        } catch (Exception e) {
-            log.error(e.getMessage());
+    public String uploadImage(MultipartFile imageFile) {
+        if (imageFile == null) {
+            return null;
         }
-        return logoFileName.toString();
+        return saveFile(imageFile, FileType.IMAGE);
+    }
+
+    private String saveFile(MultipartFile file, FileType fileType) {
+        UUID fileName = UUID.randomUUID();
+        log.debug("original file name : " + file.getOriginalFilename());
+        log.debug("fileSize : " + file.getSize());
+        log.debug("New file name : " + fileName.toString());
+
+        File saveFile = new File(getPath(fileType), fileName.toString());
+        if (fileType == FileType.IMAGE) {
+            try {
+                file.transferTo(saveFile);
+            } catch (IOException e) {
+                log.error(e.getMessage());
+            }
+        } else if (fileType == FileType.LOGO_IMAGE) {
+            try (FileOutputStream thumbnail = new FileOutputStream(saveFile);) {
+                Thumbnailator.createThumbnail(file.getInputStream(), thumbnail, 250, 250);
+            } catch (Exception e) {
+                log.error(e.getMessage());
+            }
+        }
+        return fileName.toString();
+    }
+
+    private String getPath(FileType fileType) {
+        switch (fileType) {
+            case IMAGE:
+                return imagePath;
+            case LOGO_IMAGE:
+                return logoPath;
+        }
+        return null;
     }
 }
