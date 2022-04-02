@@ -41,6 +41,12 @@ public class ImageUploadService {
         return saveFile(logoFile, FileType.LOGO_IMAGE);
     }
 
+    /**
+     * Upload image file
+     *
+     * @param imageFile
+     * @return
+     */
     public String uploadImage(MultipartFile imageFile) {
         if (imageFile == null) {
             return null;
@@ -48,6 +54,13 @@ public class ImageUploadService {
         return saveFile(imageFile, FileType.IMAGE);
     }
 
+    /**
+     * Save image file
+     *
+     * @param file MultipartFile
+     * @param fileType File type
+     * @return
+     */
     private String saveFile(MultipartFile file, FileType fileType) {
         UUID fileName = UUID.randomUUID();
         log.debug("original file name : " + file.getOriginalFilename());
@@ -71,6 +84,12 @@ public class ImageUploadService {
         return fileName.toString();
     }
 
+    /**
+     * get image path
+     *
+     * @param fileType
+     * @return
+     */
     private String getPath(FileType fileType) {
         switch (fileType) {
             case IMAGE:
