@@ -15,6 +15,12 @@ public class ImageRestController {
     @Autowired
     private ImageUploadService imageUploadService;
 
+    /**
+     * Upload image file.
+     *
+     * @param file MultipartFile
+     * @return ImageResponseDto
+     */
     @RequestMapping(value="/upload", method= RequestMethod.POST, produces="application/json")
     @ResponseBody
     public ImageResponseDto uploadImage(MultipartFile file) {
