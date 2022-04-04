@@ -3,7 +3,7 @@ function onChange(evt) {
     var data = new FormData();
     for (var i = 0, f; f = files[i]; i++) {
         // Code to execute for every file selected
-        alert(files[i].name);
+//        alert(files[i].name);
 //        data.append('files['+i+']', files[i]);
     }
     data.append("file", files[0]);
@@ -21,7 +21,9 @@ function onChange(evt) {
         console.log(data);
         content.value += "<img src='/app/v1/image/load?name=" + data.imageName +"'/>";
     }).fail(function (error) {
-        alert(error);
+        console.log(error);
+        alert(error.responseJSON.errorCode);
+        alert(error.responseJSON.detail);
     });
 }
 document.getElementById("uploadFile").addEventListener("change", onChange, false);
