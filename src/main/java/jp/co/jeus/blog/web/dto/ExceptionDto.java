@@ -9,6 +9,6 @@ import lombok.Setter;
 @AllArgsConstructor
 public class ExceptionDto {
 
-    private String errorCode;
+    private String resultCode;
     private String detail;
 }

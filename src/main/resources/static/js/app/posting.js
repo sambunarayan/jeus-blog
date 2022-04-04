@@ -22,7 +22,6 @@ function onChange(evt) {
         content.value += "<img src='/app/v1/image/load?name=" + data.imageName +"'/>";
     }).fail(function (error) {
         console.log(error);
-        alert(error.responseJSON.errorCode);
         alert(error.responseJSON.detail);
     });
 }
