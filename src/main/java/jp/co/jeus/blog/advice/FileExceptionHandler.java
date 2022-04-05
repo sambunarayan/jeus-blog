@@ -16,7 +16,7 @@ import javax.servlet.http.HttpServletRequest;
 
 @Log4j2
 @ControllerAdvice
-public class FilExceptionHandler extends ResponseEntityExceptionHandler {
+public class FileExceptionHandler extends ResponseEntityExceptionHandler {
 
     @ExceptionHandler(MultipartException.class)
     @ResponseStatus(HttpStatus.BAD_REQUEST)
