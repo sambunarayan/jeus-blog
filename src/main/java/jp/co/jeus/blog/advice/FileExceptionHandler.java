@@ -18,6 +18,13 @@ import javax.servlet.http.HttpServletRequest;
 @ControllerAdvice
 public class FileExceptionHandler extends ResponseEntityExceptionHandler {
 
+    /**
+     * MultipartException handling
+     *
+     * @param request
+     * @param ex
+     * @return
+     */
     @ExceptionHandler(MultipartException.class)
     @ResponseStatus(HttpStatus.BAD_REQUEST)
     @ResponseBody

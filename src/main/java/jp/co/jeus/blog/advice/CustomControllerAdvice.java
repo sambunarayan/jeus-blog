@@ -12,6 +12,11 @@ import java.util.UUID;
 @ControllerAdvice
 public class CustomControllerAdvice {
 
+    /**
+     * Init binder
+     *
+     * @param dataBinder
+     */
     @InitBinder
     public void initBinder(WebDataBinder dataBinder) {
         log.debug("initBinder : {}", dataBinder);
@@ -19,6 +24,12 @@ public class CustomControllerAdvice {
         dataBinder.registerCustomEditor(String.class, new StringTrimmerEditor(true));
     }
 
+    /**
+     * ModleAttribute handling
+     *
+     * @param trackingId
+     * @return
+     */
     @ModelAttribute("trackingId")
     public String addOneObject(@RequestHeader("X-Tracking-Id") Optional<String> trackingId) {
         // Return the object to be added to Model
