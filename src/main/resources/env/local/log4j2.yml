@@ -9,10 +9,15 @@ Configutation:
 
   Appenders:
     Console:
-      name: Console_Appender
-      target: SYSTEM_OUT
-      PatternLayout:
-        pattern: "[%-5level] %d{yyyy-MM-dd HH:mm:ss.SSS} [%t] %c{1} - %msg%n"
+        name: Console_Appender
+        target: SYSTEM_OUT
+        PatternLayout:
+          pattern: "[%-5level] %d{yyyy-MM-dd HH:mm:ss.SSS} [%t] %c{1} - %msg%n"
+    Info:
+        name: Info_Appender
+        level: info
+        PatternLayout:
+          pattern: "[%-5level] %d{yyyy-MM-dd HH:mm:ss.SSS} [%t] %c{1} - %msg%n"
     File:
       name: File_Appender
       fileName: ${log-path}/logfile.log
@@ -35,6 +40,7 @@ Configutation:
       level: info
       AppenderRef:
         - ref: Console_Appender
+        - ref: Info_Appender
         - ref: File_Appender
         - ref: RollingFile_Appender
     Logger:
