@@ -54,7 +54,7 @@ public class ITBulletinBoardRestControllerTest {
                 .andExpect(status().isOk());
     }
 
-    @Test
+//    @Test
     public void deletePost() throws Exception {
         long id = -1;
         mvc.perform(delete("/it/board/post/delete/post/" + id))

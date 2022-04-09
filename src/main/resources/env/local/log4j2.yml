@@ -13,15 +13,9 @@ Configutation:
         target: SYSTEM_OUT
         PatternLayout:
           pattern: "[%-5level] %d{yyyy-MM-dd HH:mm:ss.SSS} [%t] %c{1} - %msg%n"
-    Info:
-        name: Info_Appender
-        level: info
-        PatternLayout:
-          pattern: "[%-5level] %d{yyyy-MM-dd HH:mm:ss.SSS} [%t] %c{1} - %msg%n"
     File:
       name: File_Appender
-      fileName: ${log-path}/logfile.log
-      filePattern: "${log-path}/logfile-%d{yyyy-MM-dd-hh-mm}.log"
+      fileName: "${log-path}/logfile-%d{yyyy-MM-dd-hh-mm}.log"
       PatternLayout:
         pattern: "[%-5level] %d{yyyy-MM-dd HH:mm:ss.SSS} [%t] %c{1} - %msg%n"
     RollingFile:
@@ -40,7 +34,6 @@ Configutation:
       level: info
       AppenderRef:
         - ref: Console_Appender
-        - ref: Info_Appender
         - ref: File_Appender
         - ref: RollingFile_Appender
     Logger:
@@ -50,4 +43,4 @@ Configutation:
         AppenderRef:
           - ref: Console_Appender
           - ref: File_Appender
-          - ref:
+
