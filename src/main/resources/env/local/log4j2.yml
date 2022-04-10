@@ -6,7 +6,6 @@ Configutation:
     Property:
       name: log-path
       value: "logs"
-
   Appenders:
     Console:
         name: Console_Appender
@@ -15,7 +14,8 @@ Configutation:
           pattern: "[%-5level] %d{yyyy-MM-dd HH:mm:ss.SSS} [%t] %c{1} - %msg%n"
     File:
       name: File_Appender
-      fileName: "${log-path}/logfile-%d{yyyy-MM-dd-hh-mm}.log"
+      fileName: ${log-path}/logfile.log
+      filePattern: ${log-path}/logfile_%d{yyyy-MM-dd}.log
       PatternLayout:
         pattern: "[%-5level] %d{yyyy-MM-dd HH:mm:ss.SSS} [%t] %c{1} - %msg%n"
     RollingFile:
