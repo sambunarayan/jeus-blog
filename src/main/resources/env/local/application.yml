@@ -17,3 +17,5 @@ spring:
       force: true
 logging:
   config: classpath:log4j2.yml
+management:
+  add-application-context-header: false
