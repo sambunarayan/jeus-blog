@@ -1,6 +1,5 @@
 package jp.co.jeus.blog.config;
 
-import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.builders.WebSecurity;
@@ -21,11 +20,21 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .antMatchers("/images/**", "/js/**", "/css/**");
     }
 
+    /**
+     *
+     * @param auth
+     * @throws Exception
+     */
     protected void configure(AuthenticationManagerBuilder auth) throws Exception {
         auth.inMemoryAuthentication()
                 .withUser("admin").password("admin").authorities("USER", "ADMIN");
     }
 
+    /**
+     *
+     * @param http
+     * @throws Exception
+     */
     protected void configure(HttpSecurity http) throws Exception {
         http.authorizeRequests()
                 .antMatchers("/login").permitAll()
