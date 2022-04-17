@@ -27,7 +27,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
      */
     protected void configure(AuthenticationManagerBuilder auth) throws Exception {
         auth.inMemoryAuthentication()
-                .withUser("admin").password("admin").authorities("USER", "ADMIN");
+                .withUser("admin").password("{noop}admin").authorities("USER", "ADMIN");
     }
 
     /**
@@ -42,9 +42,8 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .and()
                 .formLogin()
 //                .loginPage("/accounts/login")
-                .successForwardUrl("/it/board/main/bulletin")
-                .usernameParameter("user")
-                .passwordParameter("pwd")
+                .defaultSuccessUrl("/")
+//                .successForwardUrl("/login")
                 .and()
                 .httpBasic();
     }
