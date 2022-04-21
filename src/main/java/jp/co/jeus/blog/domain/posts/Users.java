@@ -1,5 +1,6 @@
 package jp.co.jeus.blog.domain.posts;
 
+import com.sun.istack.NotNull;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -13,7 +14,9 @@ public class Users {
 
     @Id
     private String userId;
+    @NotNull
     private String password;
+    @NotNull
     private String userName;
     private String mail;
 
