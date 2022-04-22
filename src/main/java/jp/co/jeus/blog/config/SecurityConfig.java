@@ -43,7 +43,10 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 //                .withUser("admin").password("{noop}admin").authorities("USER", "ADMIN");
         auth.jdbcAuthentication()
                 .passwordEncoder(passwordEncoder())
-                .dataSource(dataSource);
+                .dataSource(dataSource)
+                .usersByUsernameQuery(
+                        "SELECT userId, password, 'true' as enabled from users where userId = ?"
+                );
     }
 
     /**
