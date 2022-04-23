@@ -11,6 +11,9 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
 import javax.sql.DataSource;
 
+/**
+ * SecurityConfig
+ */
 @EnableWebSecurity
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
@@ -21,6 +24,12 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         super(false);
     }
 
+    /**
+     * WebSecurtiy configuration
+     *
+     * @param web
+     * @throws Exception
+     */
     @Override
     public void configure(WebSecurity web) throws Exception {
         web.debug(false)
@@ -28,12 +37,18 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .antMatchers("/images/**", "/js/**", "/css/**");
     }
 
+    /**
+     * Password encoder
+     *
+     * @return
+     */
     @Bean
     public BCryptPasswordEncoder passwordEncoder() {
         return new BCryptPasswordEncoder();
     }
 
     /**
+     * Authentication configuration
      *
      * @param auth
      * @throws Exception
