@@ -2,7 +2,6 @@ package jp.co.jeus.blog.domain.posts;
 
 import com.sun.istack.NotNull;
 import lombok.Getter;
-import lombok.NoArgsConstructor;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;

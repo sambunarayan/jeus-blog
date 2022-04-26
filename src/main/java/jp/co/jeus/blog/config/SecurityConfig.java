@@ -2,6 +2,7 @@ package jp.co.jeus.blog.config;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.builders.WebSecurity;
@@ -14,6 +15,7 @@ import javax.sql.DataSource;
 /**
  * SecurityConfig
  */
+@Configuration
 @EnableWebSecurity
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
@@ -61,6 +63,10 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .dataSource(dataSource)
                 .usersByUsernameQuery(
                         "SELECT userId, password, 'true' as enabled from users where userId = ?"
+                ).authoritiesByUsernameQuery(
+                        "SELECT users.userId, user_role.role as authorities " +
+                                "FROM users, user_role " +
+                                "WHERE users.userId = ? AND users.userId = user_role.userId"
                 );
     }
 
