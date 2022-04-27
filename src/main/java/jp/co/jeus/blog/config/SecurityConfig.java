@@ -85,6 +85,8 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .defaultSuccessUrl("/")
 //                .successForwardUrl("/login")
                 .and()
-                .httpBasic();
+                .httpBasic()
+                .and()
+                .headers();
     }
 }

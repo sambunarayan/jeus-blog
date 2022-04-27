@@ -9,6 +9,9 @@ import org.springframework.context.annotation.PropertySource;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.SessionAttribute;
+
+import javax.servlet.http.HttpSession;
 
 @Log4j2
 @PropertySource("classpath:message.property")
@@ -24,6 +27,8 @@ public class MainPageController {
     private String aboutMe;
     @Autowired
     private ITBulletinPostService service;
+    @Autowired
+    private HttpSession session;
 
     /**
      * Returns the view name of the main page.
