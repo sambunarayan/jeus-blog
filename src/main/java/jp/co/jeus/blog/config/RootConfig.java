@@ -7,11 +7,19 @@ import org.springframework.data.jpa.repository.config.EnableJpaAuditing;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
 import org.springframework.web.filter.CharacterEncodingFilter;
 
+/**
+ * Root configuration
+ */
 @EnableJpaAuditing
 @Configuration
 @EnableTransactionManagement
 public class RootConfig {
 
+    /**
+     * Filter registration bean
+     * Added encoding filter
+     * @return
+     */
     @Bean
     public FilterRegistrationBean filterRegistrationBean() {
         FilterRegistrationBean registrationBean = new FilterRegistrationBean();
