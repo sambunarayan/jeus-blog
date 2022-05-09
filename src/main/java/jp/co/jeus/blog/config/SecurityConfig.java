@@ -23,7 +23,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     private DataSource dataSource;
 
     public SecurityConfig() {
-        super(false);
+        super(true);
     }
 
     /**
@@ -56,8 +56,6 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
      * @throws Exception
      */
     protected void configure(AuthenticationManagerBuilder auth) throws Exception {
-//        auth.inMemoryAuthentication()
-//                .withUser("admin").password("{noop}admin").authorities("USER", "ADMIN");
         auth.jdbcAuthentication()
                 .passwordEncoder(passwordEncoder())
                 .dataSource(dataSource)
@@ -78,12 +76,15 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     protected void configure(HttpSecurity http) throws Exception {
         http.authorizeRequests()
                 .antMatchers("/login").permitAll()
-                .anyRequest().authenticated()
                 .and()
                 .formLogin()
-//                .loginPage("/accounts/login")
+                .loginPage("/accounts/login")
                 .defaultSuccessUrl("/")
-//                .successForwardUrl("/login")
+                .successForwardUrl("/")
+                .and()
+                .exceptionHandling()
+                .and()
+                .servletApi()
                 .and()
                 .httpBasic()
                 .and()
