@@ -23,7 +23,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     private DataSource dataSource;
 
     public SecurityConfig() {
-        super(true);
+        super(false);
     }
 
     /**
@@ -74,13 +74,17 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
      * @throws Exception
      */
     protected void configure(HttpSecurity http) throws Exception {
-        http.authorizeRequests()
-                .antMatchers("/login").permitAll()
+        http.csrf()
+                .disable()
+                .authorizeRequests()
+                .antMatchers("/**").permitAll()
+                .antMatchers("/accounts/login").access("hasRole('ROLE_ADMIN')")
                 .and()
                 .formLogin()
                 .loginPage("/accounts/login")
                 .defaultSuccessUrl("/")
-                .successForwardUrl("/")
+                .loginProcessingUrl("/accounts/login/proc")
+                .failureForwardUrl("/error")
                 .and()
                 .exceptionHandling()
                 .and()
