@@ -1,5 +1,6 @@
 package jp.co.jeus.blog.config;
 
+import jp.co.jeus.blog.security.BlogUserDetailsService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -8,6 +9,7 @@ import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.builders.WebSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
+import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
 import javax.sql.DataSource;
@@ -49,6 +51,10 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         return new BCryptPasswordEncoder();
     }
 
+    @Bean
+    public UserDetailsService blogUserDetailService() {
+        return new BlogUserDetailsService();
+    }
     /**
      * Authentication configuration
      *
@@ -66,6 +72,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                                 "FROM users, user_role " +
                                 "WHERE users.userId = ? AND users.userId = user_role.userId"
                 );
+        auth.userDetailsService(blogUserDetailService());
     }
 
     /**
