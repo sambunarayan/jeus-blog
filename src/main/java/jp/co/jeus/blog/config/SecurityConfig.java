@@ -62,17 +62,18 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
      * @throws Exception
      */
     protected void configure(AuthenticationManagerBuilder auth) throws Exception {
-        auth.jdbcAuthentication()
-                .passwordEncoder(passwordEncoder())
-                .dataSource(dataSource)
-                .usersByUsernameQuery(
-                        "SELECT userId, password, 'true' as enabled from users where userId = ?"
-                ).authoritiesByUsernameQuery(
-                        "SELECT users.userId, user_role.role as authorities " +
-                                "FROM users, user_role " +
-                                "WHERE users.userId = ? AND users.userId = user_role.userId"
-                );
-        auth.userDetailsService(blogUserDetailService());
+//        auth.jdbcAuthentication()
+//                .passwordEncoder(passwordEncoder())
+//                .dataSource(dataSource)
+//                .usersByUsernameQuery(
+//                        "SELECT userId, password, 'true' as enabled from users where userId = ?"
+//                ).authoritiesByUsernameQuery(
+//                        "SELECT users.userId, user_role.role as authorities " +
+//                                "FROM users, user_role " +
+//                                "WHERE users.userId = ? AND users.userId = user_role.userId"
+//                );
+        auth.userDetailsService(blogUserDetailService())
+                .passwordEncoder(passwordEncoder());
     }
 
     /**
@@ -81,11 +82,12 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
      * @throws Exception
      */
     protected void configure(HttpSecurity http) throws Exception {
-        http.csrf()
-                .disable()
+        http
+//                .csrf()
+//                .disable()
                 .authorizeRequests()
-                .antMatchers("/**").permitAll()
-                .antMatchers("/accounts/login").access("hasRole('ROLE_ADMIN')")
+//                .antMatchers("/**").permitAll()
+                .antMatchers("/member/**").access("hasRole('ROLE_ADMIN')")
                 .and()
                 .formLogin()
                 .loginPage("/accounts/login")
