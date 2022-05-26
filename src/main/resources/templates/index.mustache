@@ -6,12 +6,10 @@
             <p class="lead my-3" name="mainBannerDetail">{{mainTitleDetail}}</p>
         </div>
     </div>
-
     <div class="row mb-2">
         <h3 class="p-md-4 mb-1 font-italic border-top">
             Recent posts
         </h3>
-
         <div id="timeline" class="col-md-8 border-bottom">
             <input type="hidden" id="last_post_id" name="last_post_id" value="{{LastIndexId}}" readonly="readonly">
             {{#LatestPost}}
@@ -36,8 +34,8 @@
             <div class="p-4">
                 <h4 class="font-italic">Elsewhere</h4>
                 <ol class="list-unstyled">
-                    <li><a href="https://github.com/sambunarayan">GitHub</a></li>
-                    <li><a href="https://leetcode.com/soyou30257">LeetCode</a></li>
+                    <li><a href="https://github.com/sambunarayan" name="gitHubUrl">GitHub</a></li>
+                    <li><a href="https://leetcode.com/soyou30257" name="leetCodeUrl">LeetCode</a></li>
                 </ol>
             </div>
         </div>
