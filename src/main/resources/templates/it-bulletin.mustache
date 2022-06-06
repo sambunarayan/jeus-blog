@@ -12,11 +12,11 @@
             <div class="col-md-6">
                 <div class="row g-0 border rounded overflow-hidden flex-md-row mb-4 shadow-sm h-md-250 position-relative">
                     <div class="col p-4 d-flex flex-column position-static">
-                        <strong class="d-inline-block mb-2 {{color}}">{{boardName}}</strong>
-                        <h3 class="mb-0">{{boardName}} post</h3>
-                        <div class="mb-1 text-muted">{{createdDate}}</div>
-                        <p class="card-text mb-auto">{{description}}</p>
-                        <a href="/app/v1/it/board/post/list/{{boardName}}" class="stretched-link">Continue reading</a>
+                        <strong class="d-inline-block mb-2 {{color}}" name="boardName">{{boardName}}</strong>
+                        <h3 class="mb-0" name="board_post">{{boardName}} post</h3>
+                        <div class="mb-1 text-muted" name="createdDate">{{createdDate}}</div>
+                        <p class="card-text mb-auto" name="desc">{{description}}</p>
+                        <a href="/app/v1/it/board/post/list/{{boardName}}" class="stretched-link" name="continue">Continue reading</a>
                     </div>
                     <div class="col-auto d-none d-lg-block">
                         <svg class="bd-placeholder-img" width="50" height="100" xmlns="http://www.w3.org/2000/svg"
