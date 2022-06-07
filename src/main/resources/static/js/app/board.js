@@ -74,7 +74,7 @@ $(document).ready(function(){
         if (startNum < 1) {
             startNum = 1;
         }
-        var prev = currPageNum != 1;
+        var prev = startNum >= 10;
         var page = "<ul class='pagination pull-right'>";
         if (prev) {
             page += "<li class='page-item'><a class='page-link' href='/app/v1/it/board/post/list/" + boardName + "?page=" + (startNum - 1) + "'>Previous</a></li>";
