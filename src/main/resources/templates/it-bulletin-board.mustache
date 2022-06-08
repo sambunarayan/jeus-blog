@@ -11,12 +11,12 @@
                     <input type="hidden" id="hidden_id" name="boardId" value="{{id}}" readonly="readonly">
                     <article class="blog-post" id="blog-post">
                         <hr>
-                        <h2 class="blog-post-title" id="post-title">{{title}}</h2>
-                        <p class="blog-post-meta">{{createdDate}} by {{author}}</p>
-                        <div id="content">{{content}}</div>
+                        <h2 class="blog-post-title" id="post-title" name="post-title">{{title}}</h2>
+                        <p class="blog-post-meta" name="createdDate">{{createdDate}} by {{author}}</p>
+                        <div id="content" name="content">{{content}}</div>
                     </article>
-                    <input type="submit" class="btn btn-primary active" value="Edit"/>
-                    <a class="btn btn-danger" role="button" data-toggle="modal" data-target="#deleteModal">Delete</a>
+                    <input type="submit" class="btn btn-primary active" value="Edit" name="submitBtn"/>
+                    <a class="btn btn-danger" role="button" data-toggle="modal" data-target="#deleteModal" name="deleteBtn">Delete</a>
                 {{/current_post}}
             </form>
             <hr>
