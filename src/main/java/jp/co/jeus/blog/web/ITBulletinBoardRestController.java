@@ -23,16 +23,36 @@ public class ITBulletinBoardRestController {
         return service.findLatestPost(id);
     }
 
+    /**
+     * Get post by key
+     *
+     * @param boardName
+     * @param id
+     * @return PostResponseDto
+     */
     @GetMapping("/{boardName}/{id}")
     public PostResponseDto getK8sPostingList(@PathVariable("boardName") String boardName, @PathVariable("id") Long id) {
         return service.findById(id);
     }
 
+    /**
+     * Get post list by page number
+     *
+     * @param boardName
+     * @param page
+     * @return PostPageDto
+     */
     @GetMapping("/{boardName}/page/{page}")
     public PostPageDto getPostPage(@PathVariable("boardName") String boardName, @PathVariable("page") int page) {
         return service.findWithPaging(boardName.toLowerCase(), page);
     }
 
+    /**
+     * Delete posting
+     *
+     * @param id post id
+     * @return id Deleted id
+     */
     @Transactional
     @DeleteMapping("/delete/post/{id}")
     public Long deletePost(@PathVariable("id") Long id) {
