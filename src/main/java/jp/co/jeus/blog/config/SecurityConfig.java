@@ -38,7 +38,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     public void configure(WebSecurity web) throws Exception {
         web.debug(false)
                 .ignoring()
-                .antMatchers("/images/**", "/js/**", "/css/**");
+                .antMatchers("/it/**", "/images/**", "/js/**", "/css/**");
     }
 
     /**
@@ -55,6 +55,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     public UserDetailsService blogUserDetailService() {
         return new BlogUserDetailsService();
     }
+
     /**
      * Authentication configuration
      *
@@ -62,22 +63,11 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
      * @throws Exception
      */
     protected void configure(AuthenticationManagerBuilder auth) throws Exception {
-//        auth.jdbcAuthentication()
-//                .passwordEncoder(passwordEncoder())
-//                .dataSource(dataSource)
-//                .usersByUsernameQuery(
-//                        "SELECT userId, password, 'true' as enabled from users where userId = ?"
-//                ).authoritiesByUsernameQuery(
-//                        "SELECT users.userId, user_role.role as authorities " +
-//                                "FROM users, user_role " +
-//                                "WHERE users.userId = ? AND users.userId = user_role.userId"
-//                );
         auth.userDetailsService(blogUserDetailService())
                 .passwordEncoder(passwordEncoder());
     }
 
     /**
-     *
      * @param http
      * @throws Exception
      */
@@ -86,12 +76,11 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 //                .csrf()
 //                .disable()
                 .authorizeRequests()
-//                .antMatchers("/**").permitAll()
-                .antMatchers("/member/**").access("hasRole('ROLE_ADMIN')")
+                .antMatchers("/member/**").hasAuthority("ADMIN")
                 .and()
                 .formLogin()
-                .loginPage("/accounts/login")
-                .defaultSuccessUrl("/")
+                .loginPage("/accounts/login").permitAll()
+//                .defaultSuccessUrl("/")
                 .loginProcessingUrl("/accounts/login/proc")
                 .failureForwardUrl("/error")
                 .and()
