@@ -18,7 +18,7 @@ public class BlogUserDetails extends User {
     }
 
     public BlogUserDetails(MemberInfoDto dto) {
-        super(dto.getUserid(), dto.getUserpw(),
+        super(dto.getUserid(), dto.getUserPw(),
                 dto.getAuthList()
                         .stream()
                         .map(auth-> new SimpleGrantedAuthority(auth.getAuth()))

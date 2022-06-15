@@ -9,11 +9,11 @@ import java.util.List;
 public class MemberInfoDto {
 
     private String userid;
-    private String userpw;
+    private String userPw;
     private String username;
     private boolean enabled;
 
-    private Date regdate;
+    private Date regDate;
     private Date updated;
     private List<AuthDto> authList;
 }
