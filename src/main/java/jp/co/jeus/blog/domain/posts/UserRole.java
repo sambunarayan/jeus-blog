@@ -13,11 +13,10 @@ import javax.persistence.Id;
  */
 @Getter
 @Entity
-public class Role {
+public class UserRole {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    private String userId;
     @NotNull
     private String role;
 }
