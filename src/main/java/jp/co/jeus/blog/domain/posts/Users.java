@@ -5,7 +5,6 @@ import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
-import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 
@@ -17,12 +16,24 @@ import javax.persistence.Id;
 @Entity
 public class Users {
 
+    /**
+     * UserID
+     */
     @Id
     private String userId;
+    /**
+     * Password
+     */
     @NotNull
     private String password;
+    /**
+     * User name
+     */
     @NotNull
     private String userName;
+    /**
+     * mail
+     */
     private String mail;
 
     @Builder

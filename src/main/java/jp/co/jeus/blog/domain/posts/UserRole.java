@@ -15,8 +15,14 @@ import javax.persistence.Id;
 @Entity
 public class UserRole {
 
+    /**
+     * UserID
+     */
     @Id
     private String userId;
+    /**
+     * User Role
+     */
     @NotNull
     private String role;
 }
