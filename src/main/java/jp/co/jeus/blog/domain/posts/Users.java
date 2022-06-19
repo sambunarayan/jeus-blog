@@ -36,6 +36,14 @@ public class Users {
      */
     private String mail;
 
+    /**
+     * Constructor
+     *
+     * @param userId
+     * @param password
+     * @param userName
+     * @param mail
+     */
     @Builder
     public Users(String userId, String password, String userName, String mail) {
         this.userId = userId;
