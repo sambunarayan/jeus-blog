@@ -14,12 +14,22 @@ import org.springframework.web.servlet.view.JstlView;
 @Configuration
 public class ServletConfig implements WebMvcConfigurer {
 
+    /**
+     * MultipartResolver
+     *
+     * @return MultipartResolver
+     */
     @Bean
     public MultipartResolver multipartResolver() {
         StandardServletMultipartResolver resolver = new StandardServletMultipartResolver();
         return resolver;
     }
 
+    /**
+     * View resolver
+     *
+     * @return ViewResolver
+     */
     @Bean
     public ViewResolver internalResourceViewResolver() {
         InternalResourceViewResolver bean = new InternalResourceViewResolver();
