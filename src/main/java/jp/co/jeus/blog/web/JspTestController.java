@@ -8,6 +8,6 @@ public class JspTestController {
 
     @GetMapping("test")
     public String test() {
-        return "test";
+        return "/WEB-INF/views/test";
     }
 }
