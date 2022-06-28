@@ -44,13 +44,18 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     /**
      * Password encoder
      *
-     * @return
+     * @return BCryptPasswordEncoder
      */
     @Bean
     public BCryptPasswordEncoder passwordEncoder() {
         return new BCryptPasswordEncoder();
     }
 
+    /**
+     * UserDetailService bean
+     *
+     * @return UserDetailsService
+     */
     @Bean
     public UserDetailsService blogUserDetailService() {
         return new BlogUserDetailsService();
