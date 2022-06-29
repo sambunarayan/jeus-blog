@@ -15,6 +15,9 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 import java.util.HashMap;
 
+/**
+ * IT Bulletin controller
+ */
 @Log4j2
 @RequiredArgsConstructor
 @RequestMapping("/it/board/post")
