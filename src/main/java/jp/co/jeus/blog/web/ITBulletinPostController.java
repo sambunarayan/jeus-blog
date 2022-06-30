@@ -27,6 +27,15 @@ public class ITBulletinPostController {
     @Autowired
     private ITBulletinPostService postService;
 
+    /**
+     * Get board by name
+     *
+     * @param boardName
+     * @param bno
+     * @param page
+     * @param model
+     * @return
+     */
     @GetMapping("/list/{boardName}")
     public String board(@PathVariable String boardName, @RequestParam(name = "bno", required = false) Long bno,
                         @RequestParam(name = "page", required = false) Long page, Model model) {
@@ -42,6 +51,14 @@ public class ITBulletinPostController {
         return "it-bulletin-board";
     }
 
+    /**
+     * Get positing page
+     *
+     * @param board
+     * @param page
+     * @param model
+     * @return
+     */
     @GetMapping("posting/{board}")
     public String posting(@PathVariable String board, @RequestParam(name = "page", required = false) Long page, Model model) {
         model.addAttribute("board_name", board);
@@ -49,6 +66,14 @@ public class ITBulletinPostController {
         return "it-bulletin-posting";
     }
 
+    /**
+     * Get an existing posting page
+     *
+     * @param board
+     * @param formData
+     * @param model
+     * @return
+     */
     @PostMapping("posting/{board}")
     public String posting(@PathVariable String board, @RequestParam HashMap<String, String> formData, Model model) {
         model.addAttribute("board_name", board);
@@ -57,6 +82,14 @@ public class ITBulletinPostController {
         return "it-bulletin-posting";
     }
 
+    /**
+     * Put new posting
+     *
+     * @param formData
+     * @param model
+     * @param uploadFile
+     * @return
+     */
     @Transactional
     @RequestMapping(value = "posting", method = RequestMethod.POST)
     public String posting(@RequestParam HashMap<String, String> formData, Model model, MultipartFile[] uploadFile) {
