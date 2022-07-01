@@ -10,6 +10,9 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
+/**
+ * IT Bulletin board rest controller
+ */
 @RequestMapping("/it/board/post")
 @RequiredArgsConstructor
 @RestController
@@ -33,6 +36,12 @@ public class ITBulletinBoardRestController {
         return service.findWithPaging(boardName.toLowerCase(), page);
     }
 
+    /**
+     * Delete posting
+     *
+     * @param id
+     * @return
+     */
     @Transactional
     @DeleteMapping("/delete/post/{id}")
     public Long deletePost(@PathVariable("id") Long id) {
