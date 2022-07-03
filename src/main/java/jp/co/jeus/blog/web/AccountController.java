@@ -8,12 +8,23 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+/**
+ * AccountsController
+ */
 @Log4j2
 @RequiredArgsConstructor
 @RequestMapping("accounts")
 @Controller
 public class AccountController {
 
+    /**
+     * Login
+     *
+     * @param error
+     * @param logout
+     * @param model
+     * @return
+     */
     @GetMapping("login")
     public String login(String error, String logout, Model model) {
         log.info("Custom login page");
