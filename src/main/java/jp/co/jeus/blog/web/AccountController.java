@@ -39,6 +39,11 @@ public class AccountController {
         return "login";
     }
 
+    /**
+     * login process
+     *
+     * @return
+     */
     @PostMapping("login/proc")
     public String loginProcess() {
         log.debug("Login process");
