@@ -21,16 +21,35 @@ public class ITBulletinBoardRestController {
     @Autowired
     private ITBulletinPostService service;
 
+    /**
+     * Get latest posts
+     *
+     * @param id id of post
+     * @return List of post
+     */
     @GetMapping("/latest/{id}")
     public List<PostResponseDto> getLatestPosts(@PathVariable("id") Long id) {
         return service.findLatestPost(id);
     }
 
+    /**
+     *
+     * @param boardName
+     * @param id
+     * @return
+     */
     @GetMapping("/{boardName}/{id}")
     public PostResponseDto getK8sPostingList(@PathVariable("boardName") String boardName, @PathVariable("id") Long id) {
         return service.findById(id);
     }
 
+    /**
+     * Get posts with page
+     *
+     * @param boardName
+     * @param page
+     * @return
+     */
     @GetMapping("/{boardName}/page/{page}")
     public PostPageDto getPostPage(@PathVariable("boardName") String boardName, @PathVariable("page") int page) {
         return service.findWithPaging(boardName.toLowerCase(), page);
