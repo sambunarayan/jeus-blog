@@ -9,6 +9,7 @@ import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 import org.springframework.web.servlet.view.InternalResourceViewResolver;
 import org.springframework.web.servlet.view.JstlView;
+import org.springframework.web.servlet.view.ResourceBundleViewResolver;
 
 /**
  * ServletConfig
@@ -26,6 +27,13 @@ public class ServletConfig implements WebMvcConfigurer {
     public MultipartResolver multipartResolver() {
         StandardServletMultipartResolver resolver = new StandardServletMultipartResolver();
         return resolver;
+    }
+
+    @Bean
+    public ViewResolver resourceBundleViewResolver() {
+        ResourceBundleViewResolver bean = new ResourceBundleViewResolver();
+        bean.setBasename("views");
+        return bean;
     }
 
     /**
