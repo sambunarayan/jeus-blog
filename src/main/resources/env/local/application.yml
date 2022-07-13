@@ -10,6 +10,10 @@ spring:
     password: 1234
   jpa:
     show-sql: true
+  mvc:
+    view:
+      prefix: /WEB-INF/views/
+      suffix: .jsp
   http:
     encoding:
       charset: UTF-8
