@@ -8,6 +8,9 @@ import org.springframework.web.servlet.support.AbstractAnnotationConfigDispatche
 import javax.servlet.MultipartConfigElement;
 import javax.servlet.ServletRegistration;
 
+/**
+ * Servlet initializer
+ */
 @PropertySource("classpath:filepath.property")
 @EnableWebMvc
 public class WebMvcConfig extends AbstractAnnotationConfigDispatcherServletInitializer {
