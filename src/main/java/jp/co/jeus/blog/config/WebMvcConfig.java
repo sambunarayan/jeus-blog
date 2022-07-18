@@ -33,6 +33,11 @@ public class WebMvcConfig extends AbstractAnnotationConfigDispatcherServletIniti
         return new Class[]{ServletConfig.class};
     }
 
+    /**
+     * Registration
+     *
+     * @param registration
+     */
     @Override
     protected void customizeRegistration(ServletRegistration.Dynamic registration) {
         registration.setInitParameter("throwExceptionIfNoHandlerFound", "true");
