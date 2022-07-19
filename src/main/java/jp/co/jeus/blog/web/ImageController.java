@@ -17,8 +17,14 @@ import org.springframework.web.bind.annotation.*;
 @Controller
 public class ImageController {
 
+    /**
+     * ImageLoadService
+     */
     @Autowired
     private ImageLoadService imageLoadService;
+    /**
+     * TaskExecutor
+     */
     @Autowired
     private AsyncListenableTaskExecutor taskExecutor;
 
