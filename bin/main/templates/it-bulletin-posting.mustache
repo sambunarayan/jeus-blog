@@ -1,0 +1,48 @@
+{{>layout/header}}
+<main class="container">
+    <div class="p-4 p-md-5 mb-4 border text-black rounded bg-white">
+        <div class="d-flex flex-column justify-content-center">
+            <h1 class="display-4 font-italic">{{board_name}}に投稿する</h1>
+            <hr>
+            <form action="/app/v1/it/board/post/posting" method="post" enctype="multipart/form-data">
+                <input type="hidden" id="boardName" name="boardName" value="{{board_name}}">
+                <input type="hidden" id="current_page" name="current_page" value="{{current_page}}">
+                {{#post}}
+                    <input type="hidden" id="id" name="id" value="{{id}}">
+                    <div class="shadow p-3 mb-3 bg-body rounded">
+                        <input type="text" class="form-control" id="title" name="title" value="{{title}}">
+                    </div>
+                    <div class="shadow p-3 mb-3 bg-body rounded">
+                        <label for="contentArea" class="form-label">本文</label>
+                        <textarea class="form-control" id="content" name="content" rows="10">{{content}}</textarea>
+                    </div>
+                    <div>
+                        <input type="submit" class="btn btn-primary active" value="Post"/>
+                        <a href="/app/v1/it/board/post/list/{{board_name}}?bno={{id}}&page={{current_page}}"class="btn btn-secondary">Cancel</a>
+                    </div>
+                    <div class="shadow p-3 mb-3 bg-body rounded">
+                        <input type="file" id="uploadFile" name="uploadFile" multiple>
+                    </div>
+                {{/post}}
+                {{^post}}
+                    <div class="shadow p-3 mb-3 bg-body rounded">
+                        <input type="text" class="form-control" id="title" name="title" placeholder="タイトル">
+                    </div>
+                    <div class="shadow p-3 mb-3 bg-body rounded">
+                        <label for="contentArea" class="form-label">本文</label>
+                        <textarea class="form-control" id="content" name="content" rows="10"></textarea>
+                    </div>
+                    <div>
+                        <input type="submit" class="btn btn-primary active" value="Post"/>
+                        <a href="/app/v1/it/board/post/list/{{board_name}}?page={{current_page}}"class="btn btn-default">Cancel</a>
+                    </div>
+                    <div class="shadow p-3 mb-3 bg-body rounded">
+                        <input type="file" id="uploadFile" name="uploadFile" multiple>
+                    </div>
+                {{/post}}
+            </form>
+        </div>
+    </div>
+</main><!-- /.container -->
+<script src="/app/v1/js/app/posting.js"></script>
+{{>layout/footer}}

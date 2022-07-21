@@ -1,0 +1,54 @@
+{{>layout/header}}
+<main class="container">
+    <div class="p-4 p-md-5 mb-4 border text-black rounded bg-white">
+        <div class="d-flex flex-column justify-content-center">
+            <h1 class="display-4 font-italic">Create new board</h1>
+            <hr>
+            {{#errors}}
+                <strong class="d-inline-block mb-2 text-red">{{.}}</strong>
+            {{/errors}}
+            <form action="/app/v1/it/board/main/register" method="POST" id="BoardValidationForm" enctype="multipart/form-data"
+                  name="BoardValidationForm">
+                {{#boardValidationForm}}
+                    {{#boardValidationForm}}
+                        <div class="shadow p-3 mb-3 bg-body rounded">
+                            <input type="text" class="form-control" id="boardNameInput" name="boardNameInput"
+                                   value="{{#boardNameInput}}{{.}}{{/boardNameInput}}" placeholder="Board Name">
+                        </div>
+                        <div class="shadow p-3 mb-3 bg-body rounded">
+                            <input type="text" class="form-control" id="categoryInput" name="categoryInput"
+                                   placeholder="it" value="it" readonly>
+                        </div>
+                        <div class="shadow p-3 mb-3 bg-body rounded">
+                            <select class="form-select {{colorSelect}}" id="colorSelect" name="colorSelect"
+                                    value="{{colorSelect}}">
+                                <option value="bg-dark">Color</option>
+                                <option class="bg-blue" value="bg-blue">Blue</option>
+                                <option class="bg-indigo" value="bg-indigo">Indigo</option>
+                                <option class="bg-pink" value="bg-pink">Pink</option>
+                                <option class="bg-red" value="bg-red">Red</option>
+                                <option class="bg-yellow" value="bg-yellow">Yellow</option>
+                                <option class="bg-orange" value="bg-orange">Orange</option>
+                                <option class="bg-teal" value="bg-teal">Teal</option>
+                                <option class="bg-green" value="bg-green">Green</option>
+                                <option class="bg-light-dark" value="bg-light-dark">Light dark</option>
+                            </select>
+                        </div>
+                        <div class="shadow p-3 mb-3 bg-body rounded">
+                            <label for="logo" class="form-label">Logo</label>
+                            <input class="form-control" type="file" id="logoFile" name="logoFile" multiple>
+                        </div>
+                        <div class="shadow p-3 mb-3 bg-body rounded">
+                            <label for="contentArea" class="form-label">Details</label>
+                            <textarea class="form-control" id="detailsArea" name="detailsArea"
+                                      rows="5">{{#detailsArea}}{{.}}{{/detailsArea}}</textarea>
+                        </div>
+                        <input type="submit" class="btn btn-primary active" value="Create"/>
+                    {{/boardValidationForm}}
+                {{/boardValidationForm}}
+            </form>
+        </div>
+    </div>
+</main><!-- /.container -->
+<script src="/app/v1/js/app/board-register.js"></script>
+{{>layout/footer}}

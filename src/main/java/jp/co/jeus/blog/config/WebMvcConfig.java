@@ -1,16 +1,18 @@
 package jp.co.jeus.blog.config;
 
+import javax.servlet.MultipartConfigElement;
+import javax.servlet.ServletRegistration;
+
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.PropertySource;
 import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 import org.springframework.web.servlet.support.AbstractAnnotationConfigDispatcherServletInitializer;
 
-import javax.servlet.MultipartConfigElement;
-import javax.servlet.ServletRegistration;
-
 /**
  * Servlet initializer
  */
+@ComponentScan("jp.co.jeus.blog.properties.*")
 @PropertySource("classpath:filepath.property")
 @EnableWebMvc
 public class WebMvcConfig extends AbstractAnnotationConfigDispatcherServletInitializer {

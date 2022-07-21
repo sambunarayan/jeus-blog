@@ -1,0 +1,41 @@
+{{>layout/header}}
+<main class="container">
+    <div class="p-4 p-md-4 mb-4 text-white rounded bg-light-dark">
+        <div class="col-md-6 px-0">
+            <h1 class="display-4 font-italic" name="banner_value">IT 日記</h1>
+            <p class="lead my-3">Multiple lines of text that form the lede, informing new readers quickly and
+                efficiently about what’s most interesting in this post’s contents.</p>
+        </div>
+    </div>
+    <div class="row mb-2">
+        {{#boards}}
+            <div class="col-md-6">
+                <div class="row g-0 border rounded overflow-hidden flex-md-row mb-4 shadow-sm h-md-250 position-relative">
+                    <div class="col p-4 d-flex flex-column position-static">
+                        <strong class="d-inline-block mb-2 {{color}}" name="boardName">{{boardName}}</strong>
+                        <h3 class="mb-0" name="board_post">{{boardName}} post</h3>
+                        <div class="mb-1 text-muted" name="createdDate">{{createdDate}}</div>
+                        <p class="card-text mb-auto" name="desc">{{description}}</p>
+                        <a href="/app/v1/it/board/post/list/{{boardName}}" class="stretched-link" name="continue">Continue reading</a>
+                    </div>
+                    <div class="col-auto d-none d-lg-block">
+                        <svg class="bd-placeholder-img" width="50" height="100" xmlns="http://www.w3.org/2000/svg"
+                             role="img" aria-label="Placeholder: Thumbnail" preserveAspectRatio="xMidYMid slice"
+                             focusable="false">
+                            <img class="img-thumbnail border-0 position-absolute top-50 end-0 translate-middle-y" src="/app/v1/image/logo/{{logo}}">
+                        </svg>
+                    </div>
+                </div>
+            </div>
+        {{/boards}}
+        <div class="col-md-6">
+            <div class="row g-0 border rounded overflow-hidden flex-md-row mb-4 shadow-sm h-md-250 position-relative bg-light">
+                <div class="col-auto p-4 d-flex flex-column position-absolute top-50 start-50 translate-middle">
+                    <a href="/app/v1/it/board/main/register/form" class="stretched-link link-secondary text-decoration-none fs-1">+</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</main><!-- /.container -->
+{{>layout/footer}}

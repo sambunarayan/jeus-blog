@@ -1,0 +1,21 @@
+server:
+  port: 8080
+  servlet:
+    context-path: /app/v1
+spring:
+  datasource:
+    driver-class-name: org.mariadb.jdbc.Driver
+    url: jdbc:mysql://192.168.99.100:3306/blogdb?useUnicode=true&characterEncoding=utf8mb4
+    username: root
+    password: root
+  jpa:
+    show-sql: true
+  http:
+    encoding:
+      charset: UTF-8
+      enabled: true
+      force: true
+logging:
+  config: classpath:log4j2.yml
+management:
+  add-application-context-header: false

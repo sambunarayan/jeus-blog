@@ -1,0 +1,4 @@
+default.filepath=/audit
+image.filepath=/audit/images
+logo.image.filepath=/audit/images/logo
+logo.image.default=default
