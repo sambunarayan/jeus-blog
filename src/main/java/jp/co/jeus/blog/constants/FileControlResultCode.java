@@ -3,6 +3,9 @@ package jp.co.jeus.blog.constants;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 
+/**
+ * File control result code
+ */
 @Getter
 @AllArgsConstructor
 public enum FileControlResultCode {
