@@ -8,6 +8,9 @@ import lombok.NonNull;
 
 import javax.persistence.*;
 
+/**
+ * Post entity
+ */
 @Getter
 @NoArgsConstructor
 @Entity
