@@ -6,6 +6,9 @@ import org.springframework.stereotype.Component;
 import org.springframework.validation.Errors;
 import org.springframework.validation.Validator;
 
+/**
+ * Post validator
+ */
 @Log4j2
 @Component
 public class PostValidator implements Validator {
@@ -14,6 +17,12 @@ public class PostValidator implements Validator {
         return false;
     }
 
+    /**
+     * Post validate
+     *
+     * @param form
+     * @param errors
+     */
     @Override
     public void validate(Object form, Errors errors) {
         PostValidationForm validationForm = (PostValidationForm) form;
