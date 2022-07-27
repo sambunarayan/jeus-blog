@@ -20,16 +20,31 @@ public class WebMvcConfig extends AbstractAnnotationConfigDispatcherServletIniti
     @Value("${default.filepath:}")
     private String location;
 
+    /**
+     * Servlet mappings
+     *
+     * @return
+     */
     @Override
     protected String[] getServletMappings() {
         return new String[0];
     }
 
+    /**
+     * Root config classes
+     *
+     * @return
+     */
     @Override
     protected Class<?>[] getRootConfigClasses() {
         return new Class[] {RootConfig.class};
     }
 
+    /**
+     * Config classes
+     *
+     * @return
+     */
     @Override
     protected Class<?>[] getServletConfigClasses() {
         return new Class[]{ServletConfig.class};
