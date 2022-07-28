@@ -6,6 +6,9 @@ import org.springframework.data.jpa.repository.Query;
 
 import java.util.List;
 
+/**
+ * Post repository
+ */
 @TimerAspect.Timer
 public interface PostRepository extends JpaRepository<Post, Long> {
 
