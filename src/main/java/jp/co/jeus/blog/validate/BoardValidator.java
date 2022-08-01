@@ -6,6 +6,9 @@ import org.springframework.stereotype.Component;
 import org.springframework.validation.Errors;
 import org.springframework.validation.Validator;
 
+/**
+ * BoardValidator
+ */
 @Log4j2
 @Component
 public class BoardValidator implements Validator {
