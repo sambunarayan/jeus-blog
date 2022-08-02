@@ -18,6 +18,12 @@ public class BoardValidator implements Validator {
         return BoardValidationForm.class.isAssignableFrom(clazz);
     }
 
+    /**
+     * Validate
+     *
+     * @param form
+     * @param errors
+     */
     @Override
     public void validate(Object form, Errors errors) {
         BoardValidationForm validationForm = (BoardValidationForm) form;
