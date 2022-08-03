@@ -13,6 +13,12 @@ import org.springframework.validation.Validator;
 @Component
 public class BoardValidator implements Validator {
 
+    /**
+     * Support classes
+     *
+     * @param clazz
+     * @return
+     */
     @Override
     public boolean supports(Class<?> clazz) {
         return BoardValidationForm.class.isAssignableFrom(clazz);
