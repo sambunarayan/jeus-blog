@@ -8,6 +8,9 @@ import org.springframework.core.task.TaskExecutor;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Component;
 
+/**
+ * Check bean Processor
+ */
 @Log4j2
 @Component
 public class AuditCheckBeanPostProcessor implements BeanPostProcessor {
