@@ -15,6 +15,14 @@ import org.springframework.stereotype.Component;
 @Component
 public class AuditCheckBeanPostProcessor implements BeanPostProcessor {
 
+    /**
+     * Before initialization
+     *
+     * @param bean
+     * @param beanName
+     * @return
+     * @throws BeansException
+     */
     @Override
     public Object postProcessBeforeInitialization(Object bean, String beanName) throws BeansException {
         if (bean instanceof JpaRepository) {
@@ -23,6 +31,14 @@ public class AuditCheckBeanPostProcessor implements BeanPostProcessor {
         return bean;
     }
 
+    /**
+     * After initialization
+     *
+     * @param bean
+     * @param beanName
+     * @return
+     * @throws BeansException
+     */
     @Override
     public Object postProcessAfterInitialization(Object bean, String beanName) throws BeansException {
         if (bean instanceof JpaRepository) {
