@@ -12,6 +12,9 @@ import org.springframework.transaction.annotation.Transactional;
 import java.util.List;
 import java.util.stream.Collectors;
 
+/**
+ * IT Bulletin board service
+ */
 @RequiredArgsConstructor
 @PropertySource("classpath:filepath.property")
 @Service
