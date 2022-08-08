@@ -14,6 +14,9 @@ import org.springframework.web.servlet.mvc.method.annotation.ResponseEntityExcep
 
 import javax.servlet.http.HttpServletRequest;
 
+/**
+ * File exception handler
+ */
 @Log4j2
 @ControllerAdvice
 public class FileExceptionHandler extends ResponseEntityExceptionHandler {

@@ -8,6 +8,9 @@ import org.springframework.web.bind.annotation.*;
 import java.util.Optional;
 import java.util.UUID;
 
+/**
+ * Controller advice
+ */
 @Log4j2
 @ControllerAdvice
 public class CustomControllerAdvice {
