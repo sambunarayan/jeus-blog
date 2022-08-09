@@ -78,17 +78,12 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
      */
     protected void configure(HttpSecurity http) throws Exception {
         http
-//                .csrf()
-//                .disable()
                 .authorizeRequests()
-                    .mvcMatchers("/**").permitAll()
-//                    .mvcMatchers("/it/**").permitAll()
-                    .anyRequest()
-                    .authenticated()
+                .mvcMatchers("/**").permitAll()
+                .anyRequest()
+                .authenticated()
                 .and()
                 .formLogin()
-//                .loginPage("/accounts/login").permitAll()
-//                .defaultSuccessUrl("/")
                 .loginProcessingUrl("/accounts/login/proc")
                 .and()
                 .exceptionHandling()
